@@ -1,0 +1,1 @@
+[25-Oct-2015 18:53:14 UTC] PHP Fatal error:  Call to undefined method PDOStatement::excecute() in /home/gamerstack/public_html/crons/mail.php on line 22

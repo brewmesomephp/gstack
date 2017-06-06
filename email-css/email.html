@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!--least errors-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<!--    display all unicode text-->
+    <!--[if !mso]><!-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<!--    compatible with windows phones but don't utilie this on outlook-->
+    <!--<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style type="text/css">
+        /*Media Queries*/
+@media screen and (max-width: 400px) {
+.two-column .column,
+    .three-column .column {
+        max-width: 100% !important;
+    }
+    .two-column img {
+        max-width: 100% !important;
+    }
+    .three-column img {
+        max-width: 50% !important;
+    }
+}
+
+@media screen and (min-width: 401px) and (max-width: 620px) {
+.three-column .column {
+        max-width: 33% !important;
+    }
+    .two-column .column {
+        max-width: 50% !important;
+    }
+}
+
+/* Basics */
+body {
+    margin: 0 !important; /*remove all margins, padding, and borders from everything. important because some clients try to overwrite the style*/
+    padding: 0; /*remove all margins, padding, and borders from everything*/
+    background-color: #ffffff; /*best to explicitly set color so outlook or lotus notes don't mess it up*/
+}
+table {
+    border-spacing: 0; /*remove all margins, padding, and borders from everything*/
+    font-family: sans-serif;
+    color: #333333;
+}
+td {
+    padding: 0; /*remove all margins, padding, and borders from everything*/
+}
+img {
+    border: 0; /*remove all margins, padding, and borders from everything*/
+}
+div[style*="margin: 16px 0"] {  /*used in conjunction with the !important to prevent old android apps from adding padding*/
+    margin:0 !important; /*remove all margins, padding, and borders from everything*/
+}
+.wrapper {
+    width: 100%;
+    table-layout: fixed; /*be sure it will stay centered in yahoo mail*/
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+.webkit { 
+    /*We’re setting a max-width of 600px wide on a div called .webkit that is used to contain everything in Apple Mail 6 (and below) and Outlook 2011, and giving it a margin of 0 auto so that it will be centered in Yahoo mail too.*/
+    max-width: 600px;
+    margin: 0 auto; /*remove all margins, padding, and borders from everything*/
+}
+
+.outer { /*we want it to be 100% wide unless the device's screen is larger than 600px, in which case we max-width: 600px*/
+Margin: 0 auto; /*set table to center in chrome and yahoo.  We also have Margin: 0 auto; set here to center our table in Yahoo in Chrome. Though this use of margin is for Yahoo’s sake, I always capitalise Margin so that Outlook.com won’t strip it out–a neat little hack thanks*/
+    width: 100%;
+    max-width: 600px;
+}
+
+.full-width-image img {
+    width: 100%;
+    max-width: 600px; /*Windows Phone does not play nice when the max-width is also set to 100%*/
+    height: auto; /*set height to auto to ensure that our image doesn't end up with the wrong aspect ratio anywhere.*/
+}
+
+.inner {
+padding: 10px;
+}
+p {
+    Margin: 0;
+}
+a {
+    color: #ee6a56;
+    text-decoration: underline;
+}
+.h1 {
+    font-size: 21px;
+    font-weight: bold;
+    Margin-bottom: 18px;
+}
+.h2 {
+    font-size: 18px;
+    font-weight: bold;
+    Margin-bottom: 12px;
+}
+ 
+/* One column layout */
+.one-column .contents {
+    text-align: left;
+}
+.one-column p {
+    font-size: 14px;
+    Margin-bottom: 10px;
+}
+/*Two column layout*/
+.two-column {
+text-align: center;
+    font-size: 0;
+}
+.two-column .column {
+width: 100%;
+    max-width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}
+.contents {
+width: 100%;
+}
+.two-column .contents {
+font-size: 14px;
+    text-align: left;
+}
+.two-column img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+}
+.two-column .text {
+    padding-top: 10px;
+}
+/*Three column layout*/
+.three-column {
+    text-align: center;
+    font-size: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.three-column .column {
+    width: 100%;
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+.three-column .contents {
+    font-size: 14px;
+    text-align: center;
+}
+.three-column img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+}
+.three-column .text {
+    padding-top: 10px;
+}
+
+/* Left sidebar layout */
+.left-sidebar {
+text-align: center;
+    font-size: 0;
+}
+.left-sidebar .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.left-sidebar .left {
+    max-width: 100px;
+}
+.left-sidebar .right {
+    max-width: 500px;
+}
+.left-sidebar .img {
+    width: 100%;
+    max-width: 80px;
+    height: auto;
+}
+
+.left-sidebar .contents {
+font-size: 14px;
+    text-align: center;
+}
+.left-sidebar a {
+    color: #85ab70;
+}
+
+/* Right sidebar layout */
+.right-sidebar {
+text-align: center;
+    font-size: 0;
+}
+.right-sidebar .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.right-sidebar .left {
+    max-width: 100px;
+}
+.right-sidebar .right {
+    max-width: 500px;
+}
+.right-sidebar .img {
+    width: 100%;
+    max-width: 80px;
+    height: auto;
+}
+.right-sidebar .contents {
+    font-size: 14px;
+    text-align: center;
+}
+.right-sidebar a {
+    color: #70bbd9;
+}
+    </style>
+<!--    set height to auto to ensure that our image doesn't end up with the wrong aspect ratio anywhere.-->
+    <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse;}      
+    </style>
+    <![endif]-->
+</head>
+<body>
+<!--    a lot of clients strip this-->
+    <center class="wrapper"> 
+<!--        this is for when the body is stripped. it acts as a body-->
+        <div class="webkit">
+<!--            for WebKit - webkit can use max-width in css so we allow this (only works in div)-->
+
+<!--We’ll start with one of the key building blocks for this method: a conditional table for Outlook that is hidden to all other clients. We need these because we’re going to be using the max-width property which Outlook doesn’t support. Therefore we need to create special Outlook-only tables with explicit pixel widths to contain everything in Outlook.-->      
+<!--[if (gte mso 9)|(IE)]>
+<table width="600" align="center">
+<tr>
+<td>
+<![endif]-->
+<table class="outer" align="center"> 
+<!--    Outer: which is our key outer building block for every client except Outlook.-->
+<tr>
+        <td class="full-width-image">
+            <img src="images/header.jpg" width="600" alt="" />
+        </td>
+    </tr>
+    <tr>
+<td class="one-column">
+        <table width="100%">
+            <tr>
+                <td class="inner contents">
+                    <p class="h1">Lorem ipsum dolor sit amet</p> 
+<!--                    because Outlook.com has some h1, h2 and h3 styles that always override your styling.-->
+                    <p>Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat.</p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+    <tr>
+<td class="two-column">
+<!--    These conditional columns are important, because without them Outlook will not let our two floating tables sit neatly side-by-side. As Outlook doesn’t support max-width either, these columns help restrict each column to the correct size.-->
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%">
+        <tr>
+        <td width="50%" valign="top">
+        <![endif]-->
+    
+<!--    The way we are going to get two columns to float side by side on desktop, but stack in the centre on mobile, is by using a combination of text-align: center and display: inline-block-->
+        <div class="column">
+<table width="100%">
+        <tr>
+            <td class="inner">
+                <table class="contents">
+                    <tr>
+                            <td>
+                                    <img src="images/two-column-01.jpg" width="280" alt="" />
+                            </td>
+                    </tr>
+                    <tr>
+                            <td class="text">
+                                    Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                            </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="50%" valign="top">
+        <![endif]-->
+        <div class="column">
+<table width="100%">
+        <tr>
+            <td class="inner">
+                <table class="contents">
+                    <tr>
+                            <td>
+                                    <img src="images/two-column-01.jpg" width="280" alt="" />
+                            </td>
+                    </tr>
+                    <tr>
+                            <td class="text">
+                                    Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                            </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+    <tr>
+<td class="three-column">
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%">
+        <tr>
+        <td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner">
+                <table class="contents">
+                    <tr>
+                        <td>
+                            <img src="images/three-column-01.jpg" width="180" alt="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            Scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner">
+                <table class="contents">
+                    <tr>
+                        <td>
+                            <img src="images/three-column-01.jpg" width="180" alt="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            Scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner">
+                <table class="contents">
+                    <tr>
+                        <td>
+                            <img src="images/three-column-01.jpg" width="180" alt="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            Scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+    <tr>
+<td class="three-column">
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%">
+        <tr>
+        <td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                <p class="h2">Heading</p>
+                <p>Class eleifend aptent taciti sociosqu ad litora torquent conubia</p>
+                <p><a href="#">Read more</a></p>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                <p class="h2">Heading</p>
+                <p>Class eleifend aptent taciti sociosqu ad litora torquent conubia</p>
+                <p><a href="#">Read more</a></p>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                <p class="h2">Heading</p>
+                <p>Class eleifend aptent taciti sociosqu ad litora torquent conubia</p>
+                <p><a href="#">Read more</a></p>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        <tr>
+        <td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                <p class="h2">Heading</p>
+                <p>Class eleifend aptent taciti sociosqu ad litora torquent conubia</p>
+                <p><a href="#">Read more</a></p>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                <p class="h2">Heading</p>
+                <p>Class eleifend aptent taciti sociosqu ad litora torquent conubia</p>
+                <p><a href="#">Read more</a></p>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="200" valign="top">
+        <![endif]-->
+        <div class="column">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                <p class="h2">Heading</p>
+                <p>Class eleifend aptent taciti sociosqu ad litora torquent conubia</p>
+                <p><a href="#">Read more</a></p>
+            </td>
+        </tr>
+        
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+    <tr>
+<td class="left-sidebar">
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%">
+        <tr>
+        <td width="100">
+        <![endif]-->
+        <div class="column left" dir="ltr">
+    <table width="100%">
+        <tr>
+            <td class="inner">
+                <img src="images/sidebar-01.jpg" width="80" alt="" />
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="500">
+        <![endif]-->
+        <div class="column right" dir="ltr">
+    <table width="100%">
+        <tr>
+            <td class="inner contents">
+                Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat. <a href="#">Read&nbsp;on</a>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+    <tr>
+    <td class="right-sidebar" dir="rtl">
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%" dir="rtl">
+        <tr>
+        <td width="100">
+        <![endif]-->
+        <div class="column left">
+            <table width="100%">
+                <tr>
+                    <td class="inner contents">
+                        <img src="images/sidebar-02.jpg" width="80" alt="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="500">
+        <![endif]-->
+        <div class="column right">
+            <table width="100%">
+                <tr>
+                    <td class="inner contents">
+                        Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra. <a href="#">Per&nbsp;inceptos</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+        </div>
+    </center>
+</body>
+</html>
+
+
+

@@ -1,0 +1,9 @@
+click button
+if already invited or an employee - ignore request
+else - insert into company_worker_invites
+send back message
+
+show on profile page if htey have an employer
+also show on company page who employees are
+also, ask what they do for the company when they log into their panel
+give chance to remove job

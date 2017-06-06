@@ -1,0 +1,14 @@
+6/4/17
+jobs_search_ajax.php -- loads results default
+game_search_ajax.php -- loads default results
+
+portfolio_ajax.php -- adds youtube video field
+process_upload.php -- adds youtube video add to database and in return results
+functions.php -- generate youtube embed code, generate youtube thumbnail, delete between; make sure to make it compatible with all YOUTUBE links
+database -- added "youtube" to portfolio
+
+
+6/5
+full_portfolio - updated for youtube
+renamed js/gigagrind.js to js.gamerstack.js
+php_splash_company.php - youtube

@@ -1,0 +1,8 @@
+
+RewriteOptions inherit
+
+RewriteEngine on
+Header set X-Robots-Tag "noindex, nofollow"
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^joealai$ "http\:\/\/gamerstack\.com\/php_profile\.php\?id\=1" [R=301,L]
+

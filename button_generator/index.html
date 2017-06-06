@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bootstrap 3 Button Generator</title>
+<meta name="description" content="A simple online tool to create and customize Bootstrap buttons." />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link type="image/x-icon" href="http://www.tutorialrepublic.com/favicon.ico" rel="shortcut icon" />
+<link href="lib/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
+<!--<link href="lib/bootstrap/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">-->
+<link href="lib/styles/prism.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="lib/styles/colorpicker-extended.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="lib/styles/generator.css?v=1.02" type="text/css" media="screen" rel="stylesheet" />
+<script type="text/javascript" src="lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/js/colorpicker.js"></script>
+<script type="text/javascript" src="lib/js/eye.js"></script>
+<script type="text/javascript" src="lib/js/utils.js"></script>
+<script type="text/javascript" src="lib/js/layout.js?ver=1.0.2"></script>
+<script type="text/javascript" src="lib/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="lib/js/generator.js?v=3.03"></script>
+<script type="text/javascript" src="lib/js/extend.js"></script>
+<!--Google Analytics-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40117907-1', 'auto');
+  ga('send', 'pageview');
+</script><!--End:Google Analytics-->
+</head>
+<body id="top">
+
+<!-- BuySellAds Ad Code -->
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+<!-- End BuySellAds Ad Code -->
+<nav role="navigation" class="navbar navbar-fixed-top navbar-inverse">
+    <div class="wrapper">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://www.tutorialrepublic.com/" class="navbar-brand">
+                <img src="lib/images/logo-small.png" alt="Tutorial Republic" title="Tutorials and references on web development technologies" />
+            </a>
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://www.tutorialrepublic.com/">HOME</a></li>
+                <li><a href="http://www.tutorialrepublic.com/html-tutorial/">HTML</a></li>
+                <li><a href="http://www.tutorialrepublic.com/css-tutorial/">CSS</a></li>
+                <li><a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/">BOOTSTRAP</a></li>
+                <li><a href="http://www.tutorialrepublic.com/references.php">REFERENCES</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle">EXAMPLES <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://www.tutorialrepublic.com/html-examples.php">HTML</a></li>
+                        <li><a href="http://www.tutorialrepublic.com/css-examples.php">CSS</a></li>
+                        <li><a href="http://www.tutorialrepublic.com/twitter-bootstrap-examples.php">BOOTSTRAP</a></li>
+						<li><a href="http://www.tutorialrepublic.com/php-examples.php">PHP</a></li>
+                    </ul>
+                </li>
+                <li><a href="http://www.tutorialrepublic.com/faq.php">FAQ</a></li>
+            </ul>
+            <form role="search" class="navbar-form navbar-right" target="_blank" method="get" action="http://www.google.com/search">
+                <div class="form-group google-search">
+                    <input type="hidden" name="sitesearch" value="www.tutorialrepublic.com" />
+                    <input type="text" name="q" placeholder="Search&hellip;" class="form-control input-sm" />
+                    <input type="submit" class="search-btn" value="" />
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="ad-box clearfix">
+	<div class="wrapper">
+		<!-- BuySellAds Zone Code -->
+<div id="bsap_1302131" class="bsarocks bsap_00a787d849a91d6d88fed0d60c28506f"></div>
+<!-- End BuySellAds Zone Code -->	</div>
+</div>
+
+<div class="header">
+    <div class="wrapper">
+        <h1>Bootstrap Button Generator</h1>
+        <h2>A quick way to create <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/">Bootstrap</a> buttons as well as customizing the existing buttons with a unique style.</h2>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="clearfix">
+        <div class="column-left">          
+            <div class="form-horizontal generator">                
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Buttons Text</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control button-text" value="Bootstrap Button">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Element Type</label>
+                    <div class="col-xs-10">
+                        <div class="btn-group element-type" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="type" value="a"> Anchor
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="type" value="button"> Button
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="type" value="input"> Input
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Button Size</label>
+                    <div class="col-xs-10">
+                        <div class="btn-group button-size" data-toggle="buttons">
+                            <label class="btn btn-default">
+                                <input type="radio" name="size" value="btn-xs"> Mini
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="size" value="btn-sm"> Small
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="size" value=""> Default
+                            </label>
+                            <label class="btn btn-default active">
+                                <input type="radio" name="size" value="btn-lg"> Large
+                            </label>
+                        </div>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label class="control-label col-xs-2 button-style">Button Style</label>
+                    <div class="col-xs-10">   
+                        <div class="button-color-option">
+                            <label><input type="radio" name="color-option" checked="checked" value="bootstrap" /> Bootstrap Inbuilt</label>
+                            <label><input type="radio" name="color-option" value="custom" /> Custom</label>
+                        </div>
+                    </div>
+                </div>                
+                <div class="bootstrap-inbuilt-style">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Button Type</label>
+                        <div class="col-xs-10">
+                            <div class="btn-group button-color" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="radio" name="color" value="btn btn-default"> Default
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="color" value="btn btn-primary"> Primary
+                                </label>
+                                <label class="btn btn-info">
+                                    <input type="radio" name="color" value="btn btn-info"> Info
+                                </label>
+                                <label class="btn btn-success active">
+                                    <input type="radio" name="color" value="btn btn-success"> Success
+                                </label>
+                                <label class="btn btn-warning">
+                                    <input type="radio" name="color" value="btn btn-warning"> Warning
+                                </label>
+                                <label class="btn btn-danger">
+                                    <input type="radio" name="color" value="btn btn-danger"> Danger
+                                </label>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Button State</label>
+                        <div class="col-xs-10">
+                            <div class="btn-group button-state" data-toggle="buttons">
+                                <label class="btn btn-default active">
+                                    <input type="radio" name="state" value="normal"> Normal
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="state" value="active"> Active
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="state" value="disabled"> Disabled
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Button Width</label>
+                    <div class="col-xs-10">
+                        <div class="btn-group button-width" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="width" value=""> Auto
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="width" value="btn-block"> Full Width
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Color picker selection -->
+                <div class="custom-button-color">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="textColor">Text Color</label>
+                        <div class="col-xs-10">  
+                            <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="textColor" />
+                            <div id="colorSelector1" class="color-slelector" style="background-color: #00ff00"><div></div></div>   
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="topColor">Gradient Top Color</label>
+                        <div class="col-xs-10">  
+                            <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="topColor" />
+                            <div id="colorSelector2" class="color-slelector" style="background-color: #00ff00"><div></div></div>   
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="bottomColor">Gradient Bottom Color</label>
+                        <div class="col-xs-10">  
+                            <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="bottomColor" />
+                            <div id="colorSelector3" class="color-slelector" style="background-color: #00ff00"><div></div></div>   
+                        </div>
+                    </div>
+		      <div class="form-group">
+                        <label class="control-label col-xs-2" for="bgColor">Background Color</label>
+                        <div class="col-xs-10">  
+                            <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="bgColor" />
+                            <div id="colorSelector4" class="color-slelector" style="background-color: #00ff00"><div></div></div>   
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="borderTopColor">Border Top Color</label>
+                        <div class="col-xs-10">  
+                            <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="borderTopColor" />
+                            <div id="colorSelector5" class="color-slelector" style="background-color: #00ff00"><div></div></div>
+                            <label class="hint-label border-all"><input type="checkbox" name="border-all" /> Use same color for all sides</label>
+                        </div>
+                    </div>
+                    <div class="border-color-separate">
+                        <div class="form-group">
+                            <label class="control-label col-xs-2" for="borderHrColor">Border Left & Right Color</label>
+                            <div class="col-xs-10">  
+                                <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="borderHrColor" />
+                                <div id="colorSelector6" class="color-slelector" style="background-color: #00ff00"><div></div></div>   
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-2" for="borderBottomColor">Border Bottom Color</label>
+                            <div class="col-xs-10">  
+                                <input type="text" maxlength="6" size="6" class="form-control input-sm pull-left" id="borderBottomColor" />
+                                <div id="colorSelector7" class="color-slelector" style="background-color: #00ff00"><div></div></div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:Color picker selection -->
+                <div class="form-group" id="iconOption">
+                    <label class="control-label col-xs-2">Icon</label>
+                    <div class="col-xs-10">
+                        <div class="btn-group include-icon" data-toggle="buttons">
+                            <label class="btn btn-success active">
+                                <input type="radio" name="includeicon" value="1"> <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="includeicon" value="0"> <span class="glyphicon glyphicon-remove"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group toggle">
+                    <label class="control-label col-xs-2">Icon Position</label>
+                    <div class="col-xs-10">   
+                        <div class="btn-group glyphicon-position" data-toggle="buttons">
+                            <label class="btn btn-success active">
+                                <input type="radio" name="iconposition" value="left"> <span class="glyphicon glyphicon-arrow-left"></span> Left
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="iconposition" value="right"> Right <span class="glyphicon glyphicon-arrow-right"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>                
+                <div class="form-group toggle">
+                    <label class="control-label col-xs-2">Choose Icon</label>
+                    <div class="col-xs-10">
+                        <ul class="the-icons clearfix">
+                            <li>
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                                <em>glyphicon-asterisk</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <em>glyphicon-plus</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-euro"></span>
+                                <em>glyphicon-euro</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-minus"></span>
+                                <em>glyphicon-minus</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-cloud"></span>
+                                <em>glyphicon-cloud</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-envelope"></span>
+                                <em>glyphicon-envelope</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <em>glyphicon-pencil</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-glass"></span>
+                                <em>glyphicon-glass</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-music"></span>
+                                <em>glyphicon-music</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-search"></span>
+                                <em>glyphicon-search</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <em>glyphicon-heart</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <em>glyphicon-star</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <em>glyphicon-star-empty</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-user"></span>
+                                <em>glyphicon-user</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-film"></span>
+                                <em>glyphicon-film</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                <em>glyphicon-th-large</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-th"></span>
+                                <em>glyphicon-th</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-th-list"></span>
+                                <em>glyphicon-th-list</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <em>glyphicon-ok</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <em>glyphicon-remove</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-zoom-in"></span>
+                                <em>glyphicon-zoom-in</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-zoom-out"></span>
+                                <em>glyphicon-zoom-out</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-off"></span>
+                                <em>glyphicon-off</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-signal"></span>
+                                <em>glyphicon-signal</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-cog"></span>
+                                <em>glyphicon-cog</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <em>glyphicon-trash</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-home"></span>
+                                <em>glyphicon-home</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-file"></span>
+                                <em>glyphicon-file</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <em>glyphicon-time</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-road"></span>
+                                <em>glyphicon-road</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-download-alt"></span>
+                                <em>glyphicon-download-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-download"></span>
+                                <em>glyphicon-download</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-upload"></span>
+                                <em>glyphicon-upload</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-inbox"></span>
+                                <em>glyphicon-inbox</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-play-circle"></span>
+                                <em>glyphicon-play-circle</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-repeat"></span>
+                                <em>glyphicon-repeat</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-refresh"></span>
+                                <em>glyphicon-refresh</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                <em>glyphicon-list-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <em>glyphicon-lock</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-flag"></span>
+                                <em>glyphicon-flag</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-headphones"></span>
+                                <em>glyphicon-headphones</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-volume-off"></span>
+                                <em>glyphicon-volume-off</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-volume-down"></span>
+                                <em>glyphicon-volume-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-volume-up"></span>
+                                <em>glyphicon-volume-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-qrcode"></span>
+                                <em>glyphicon-qrcode</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-barcode"></span>
+                                <em>glyphicon-barcode</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tag"></span>
+                                <em>glyphicon-tag</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tags"></span>
+                                <em>glyphicon-tags</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-book"></span>
+                                <em>glyphicon-book</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bookmark"></span>
+                                <em>glyphicon-bookmark</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-print"></span>
+                                <em>glyphicon-print</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-camera"></span>
+                                <em>glyphicon-camera</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-font"></span>
+                                <em>glyphicon-font</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bold"></span>
+                                <em>glyphicon-bold</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-italic"></span>
+                                <em>glyphicon-italic</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-text-height"></span>
+                                <em>glyphicon-text-height</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-text-width"></span>
+                                <em>glyphicon-text-width</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-align-left"></span>
+                                <em>glyphicon-align-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-align-center"></span>
+                                <em>glyphicon-align-center</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-align-right"></span>
+                                <em>glyphicon-align-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-align-justify"></span>
+                                <em>glyphicon-align-justify</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-list"></span>
+                                <em>glyphicon-list</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-indent-left"></span>
+                                <em>glyphicon-indent-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-indent-right"></span>
+                                <em>glyphicon-indent-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-facetime-video"></span>
+                                <em>glyphicon-facetime-video</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-picture"></span>
+                                <em>glyphicon-picture</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <em>glyphicon-map-marker</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-adjust"></span>
+                                <em>glyphicon-adjust</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tint"></span>
+                                <em>glyphicon-tint</em>
+                            </li>
+                            <li class="active">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                <em>glyphicon-edit</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-share"></span>
+                                <em>glyphicon-share</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-check"></span>
+                                <em>glyphicon-check</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-move"></span>
+                                <em>glyphicon-move</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-step-backward"></span>
+                                <em>glyphicon-step-backward</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-fast-backward"></span>
+                                <em>glyphicon-fast-backward</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-backward"></span>
+                                <em>glyphicon-backward</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-play"></span>
+                                <em>glyphicon-play</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-pause"></span>
+                                <em>glyphicon-pause</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-stop"></span>
+                                <em>glyphicon-stop</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-forward"></span>
+                                <em>glyphicon-forward</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-fast-forward"></span>
+                                <em>glyphicon-fast-forward</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-step-forward"></span>
+                                <em>glyphicon-step-forward</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-eject"></span>
+                                <em>glyphicon-eject</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <em>glyphicon-chevron-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <em>glyphicon-chevron-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                <em>glyphicon-plus-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-minus-sign"></span>
+                                <em>glyphicon-minus-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-remove-sign"></span>
+                                <em>glyphicon-remove-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ok-sign"></span>
+                                <em>glyphicon-ok-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-question-sign"></span>
+                                <em>glyphicon-question-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                <em>glyphicon-info-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-screenshot"></span>
+                                <em>glyphicon-screenshot</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <em>glyphicon-remove-circle</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ok-circle"></span>
+                                <em>glyphicon-ok-circle</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                                <em>glyphicon-ban-circle</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-arrow-left"></span>
+                                <em>glyphicon-arrow-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                                <em>glyphicon-arrow-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-arrow-up"></span>
+                                <em>glyphicon-arrow-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                                <em>glyphicon-arrow-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                                <em>glyphicon-share-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-resize-full"></span>
+                                <em>glyphicon-resize-full</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-resize-small"></span>
+                                <em>glyphicon-resize-small</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                <em>glyphicon-exclamation-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-gift"></span>
+                                <em>glyphicon-gift</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-leaf"></span>
+                                <em>glyphicon-leaf</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-fire"></span>
+                                <em>glyphicon-fire</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <em>glyphicon-eye-open</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-eye-close"></span>
+                                <em>glyphicon-eye-close</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-warning-sign"></span>
+                                <em>glyphicon-warning-sign</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-plane"></span>
+                                <em>glyphicon-plane</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                <em>glyphicon-calendar</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-random"></span>
+                                <em>glyphicon-random</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-comment"></span>
+                                <em>glyphicon-comment</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-magnet"></span>
+                                <em>glyphicon-magnet</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                                <em>glyphicon-chevron-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                                <em>glyphicon-chevron-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-retweet"></span>
+                                <em>glyphicon-retweet</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                <em>glyphicon-shopping-cart</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-folder-close"></span>
+                                <em>glyphicon-folder-close</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <em>glyphicon-folder-open</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-resize-vertical"></span>
+                                <em>glyphicon-resize-vertical</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-resize-horizontal"></span>
+                                <em>glyphicon-resize-horizontal</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hdd"></span>
+                                <em>glyphicon-hdd</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bullhorn"></span>
+                                <em>glyphicon-bullhorn</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bell"></span>
+                                <em>glyphicon-bell</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-certificate"></span>
+                                <em>glyphicon-certificate</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                <em>glyphicon-thumbs-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                                <em>glyphicon-thumbs-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hand-right"></span>
+                                <em>glyphicon-hand-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hand-left"></span>
+                                <em>glyphicon-hand-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hand-up"></span>
+                                <em>glyphicon-hand-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hand-down"></span>
+                                <em>glyphicon-hand-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                                <em>glyphicon-circle-arrow-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                                <em>glyphicon-circle-arrow-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-circle-arrow-up"></span>
+                                <em>glyphicon-circle-arrow-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                                <em>glyphicon-circle-arrow-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-globe"></span>
+                                <em>glyphicon-globe</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-wrench"></span>
+                                <em>glyphicon-wrench</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tasks"></span>
+                                <em>glyphicon-tasks</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-filter"></span>
+                                <em>glyphicon-filter</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-briefcase"></span>
+                                <em>glyphicon-briefcase</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-fullscreen"></span>
+                                <em>glyphicon-fullscreen</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                                <em>glyphicon-dashboard</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                                <em>glyphicon-paperclip</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-heart-empty"></span>
+                                <em>glyphicon-heart-empty</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-link"></span>
+                                <em>glyphicon-link</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-phone"></span>
+                                <em>glyphicon-phone</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-pushpin"></span>
+                                <em>glyphicon-pushpin</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-usd"></span>
+                                <em>glyphicon-usd</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-gbp"></span>
+                                <em>glyphicon-gbp</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort"></span>
+                                <em>glyphicon-sort</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+                                <em>glyphicon-sort-by-alphabet</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                                <em>glyphicon-sort-by-alphabet-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort-by-order"></span>
+                                <em>glyphicon-sort-by-order</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort-by-order-alt"></span>
+                                <em>glyphicon-sort-by-order-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                <em>glyphicon-sort-by-attributes</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                <em>glyphicon-sort-by-attributes-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                                <em>glyphicon-unchecked</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-expand"></span>
+                                <em>glyphicon-expand</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-collapse-down"></span>
+                                <em>glyphicon-collapse-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-collapse-up"></span>
+                                <em>glyphicon-collapse-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                <em>glyphicon-log-in</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-flash"></span>
+                                <em>glyphicon-flash</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                <em>glyphicon-log-out</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-new-window"></span>
+                                <em>glyphicon-new-window</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-record"></span>
+                                <em>glyphicon-record</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-save"></span>
+                                <em>glyphicon-save</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-open"></span>
+                                <em>glyphicon-open</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-saved"></span>
+                                <em>glyphicon-saved</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-import"></span>
+                                <em>glyphicon-import</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-export"></span>
+                                <em>glyphicon-export</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-send"></span>
+                                <em>glyphicon-send</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-floppy-disk"></span>
+                                <em>glyphicon-floppy-disk</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-floppy-saved"></span>
+                                <em>glyphicon-floppy-saved</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-floppy-remove"></span>
+                                <em>glyphicon-floppy-remove</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                                <em>glyphicon-floppy-save</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-floppy-open"></span>
+                                <em>glyphicon-floppy-open</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-credit-card"></span>
+                                <em>glyphicon-credit-card</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-transfer"></span>
+                                <em>glyphicon-transfer</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-cutlery"></span>
+                                <em>glyphicon-cutlery</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-header"></span>
+                                <em>glyphicon-header</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-compressed"></span>
+                                <em>glyphicon-compressed</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-earphone"></span>
+                                <em>glyphicon-earphone</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                                <em>glyphicon-phone-alt</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tower"></span>
+                                <em>glyphicon-tower</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-stats"></span>
+                                <em>glyphicon-stats</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sd-video"></span>
+                                <em>glyphicon-sd-video</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hd-video"></span>
+                                <em>glyphicon-hd-video</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-subtitles"></span>
+                                <em>glyphicon-subtitles</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sound-stereo"></span>
+                                <em>glyphicon-sound-stereo</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sound-dolby"></span>
+                                <em>glyphicon-sound-dolby</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sound-5-1"></span>
+                                <em>glyphicon-sound-5-1</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sound-6-1"></span>
+                                <em>glyphicon-sound-6-1</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sound-7-1"></span>
+                                <em>glyphicon-sound-7-1</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-copyright-mark"></span>
+                                <em>glyphicon-copyright-mark</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-registration-mark"></span>
+                                <em>glyphicon-registration-mark</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-cloud-download"></span>
+                                <em>glyphicon-cloud-download</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-cloud-upload"></span>
+                                <em>glyphicon-cloud-upload</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tree-conifer"></span>
+                                <em>glyphicon-tree-conifer</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tree-deciduous"></span>
+                                <em>glyphicon-tree-deciduous</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-cd"></span>
+                                <em>glyphicon-cd</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-save-file"></span>
+                                <em>glyphicon-save-file</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-open-file"></span>
+                                <em>glyphicon-open-file</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-level-up"></span>
+                                <em>glyphicon-level-up</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-copy"></span>
+                                <em>glyphicon-copy</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-paste"></span>
+                                <em>glyphicon-paste</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-alert"></span>
+                                <em>glyphicon-alert</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-equalizer"></span>
+                                <em>glyphicon-equalizer</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-king"></span>
+                                <em>glyphicon-king</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-queen"></span>
+                                <em>glyphicon-queen</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-pawn"></span>
+                                <em>glyphicon-pawn</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bishop"></span>
+                                <em>glyphicon-bishop</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-knight"></span>
+                                <em>glyphicon-knight</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-baby-formula"></span>
+                                <em>glyphicon-baby-formula</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-tent"></span>
+                                <em>glyphicon-tent</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-blackboard"></span>
+                                <em>glyphicon-blackboard</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bed"></span>
+                                <em>glyphicon-bed</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-apple"></span>
+                                <em>glyphicon-apple</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-erase"></span>
+                                <em>glyphicon-erase</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-hourglass"></span>
+                                <em>glyphicon-hourglass</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-lamp"></span>
+                                <em>glyphicon-lamp</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-duplicate"></span>
+                                <em>glyphicon-duplicate</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-piggy-bank"></span>
+                                <em>glyphicon-piggy-bank</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-scissors"></span>
+                                <em>glyphicon-scissors</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-bitcoin"></span>
+                                <em>glyphicon-bitcoin</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-yen"></span>
+                                <em>glyphicon-yen</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ruble"></span>
+                                <em>glyphicon-ruble</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-scale"></span>
+                                <em>glyphicon-scale</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ice-lolly"></span>
+                                <em>glyphicon-ice-lolly</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-ice-lolly-tasted"></span>
+                                <em>glyphicon-ice-lolly-tasted</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-education"></span>
+                                <em>glyphicon-education</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-option-horizontal"></span>
+                                <em>glyphicon-option-horizontal</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-option-vertical"></span>
+                                <em>glyphicon-option-vertical</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                                <em>glyphicon-menu-hamburger</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-modal-window"></span>
+                                <em>glyphicon-modal-window</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-oil"></span>
+                                <em>glyphicon-oil</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-grain"></span>
+                                <em>glyphicon-grain</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-sunglasses"></span>
+                                <em>glyphicon-sunglasses</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-text-size"></span>
+                                <em>glyphicon-text-size</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-text-color"></span>
+                                <em>glyphicon-text-color</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-text-background"></span>
+                                <em>glyphicon-text-background</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-object-align-top"></span>
+                                <em>glyphicon-object-align-top</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-object-align-bottom"></span>
+                                <em>glyphicon-object-align-bottom</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-object-align-horizontal"></span>
+                                <em>glyphicon-object-align-horizontal</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-object-align-left"></span>
+                                <em>glyphicon-object-align-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-object-align-vertical"></span>
+                                <em>glyphicon-object-align-vertical</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-object-align-right"></span>
+                                <em>glyphicon-object-align-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-triangle-right"></span>
+                                <em>glyphicon-triangle-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-triangle-left"></span>
+                                <em>glyphicon-triangle-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                                <em>glyphicon-triangle-bottom</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-triangle-top"></span>
+                                <em>glyphicon-triangle-top</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-console"></span>
+                                <em>glyphicon-console</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-superscript"></span>
+                                <em>glyphicon-superscript</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-subscript"></span>
+                                <em>glyphicon-subscript</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-menu-left"></span>
+                                <em>glyphicon-menu-left</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-menu-right"></span>
+                                <em>glyphicon-menu-right</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                                <em>glyphicon-menu-down</em>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-menu-up"></span>
+                                <em>glyphicon-menu-up</em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="column-right" id="myScrollspy">
+            
+<!--Button Preview Box-->           
+<div class="box button-preview" data-spy="affix" data-offset-top="248">
+    <h2>Bootstrap Button Preview</h2>
+    <div id="result"><a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-edit"></span> Bootstrap Button</a></div>
+</div>
+<!--End:Button Preview Box-->
+
+<!--HTML Code Box-->
+<div class="box" id="htmlBox">
+<div class="code-wrapper">
+<pre class="well"><code class="language-markup button-html" id="htmlCode" style="width: 415px; word-wrap: break-word; white-space: normal;">&lt;a href="#" class="btn btn-success btn-lg"&gt;&lt;i class="icon-edit icon-white"&gt;&lt;/i&gt; Bootstrap Button Generator&lt;/a&gt;</code></pre>
+<div class="copy">
+    <a id="copyHTML" href="javascript:void(0);">Click Here to Copy HTML</a>
+</div>
+<p id="htmlAlert" class="sucess-msg"><em>Copied to clipboard...</em></p>
+</div>
+</div>
+<!--End:HTML Code Box-->
+
+<!--CSS Code Box-->         
+<div id="cssBox">
+<div class="box">
+<div class="code-wrapper">
+<pre class="well"><code class="language-css button-css" id="cssCode" style="width: 415px; word-wrap: break-word; white-space: pre-wrap;">.btn.btn-success{
+    color: #ffffff;
+    background-color: #5BB75B;
+    background-image: linear-gradient(to bottom, #ff0303, #51A351);
+    border-color: #52a452 #4e9c4e #448944;
+}
+.btn.btn-success:hover{
+    color: #ffffff;
+    background-color: #51A351;
+    background-image: linear-gradient(to bottom, #51A351, #51A351);
+    border-color: #52a452 #4e9c4e #448944;
+}</code></pre>
+<div class="copy">
+    <a id="copyCSS" href="javascript:void(0);">Click Here to Copy CSS</a>
+</div>
+<p id="cssAlert" class="sucess-msg"><em>Copied to clipboard...</em></p>
+</div>
+</div>
+<h2>How to Customize Bootstrap Buttons</h2>
+<p>Just copy and paste the generated CSS in your custom <a href="http://www.tutorialrepublic.com/html-tutorial/html-styles.php">style sheet</a> and include in your document after the Bootstrap style sheet.</p>
+<p>These style rules will override the default Bootstrap styles for buttons and give them a unique look and feel. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-buttons.php">Learn more.</a></p>
+</div>
+<!--End:CSS Code Box-->
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper">
+        <p>Version 3.0, Copyright &copy; 2017 Tutorial Republic</p>
+        <ul class="list-unstyled pull-left">
+			<li><a href="http://www.tutorialrepublic.com/terms-of-use.php">Terms of Use</a></li>
+            <li><a href="http://www.tutorialrepublic.com/privacy-policy.php">Privacy Policy</a></li>
+        	<li><a href="http://www.tutorialrepublic.com/archive/twitter-bootstrap-2.3.2-button-generator.php">Previous Version</a></li>
+            <li><a href="http://www.tutorialrepublic.com/contact-us.php">Report Error</a></li>
+        </ul>
+		<div class="pull-right">
+			<div class="pull-right">
+                <!-- Facebook Like (HTML5) -->
+                <div class="fb-like" data-href="https://www.facebook.com/tutorialrepublic" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+            </div>
+            <div class="pull-right" style="margin-right: 5px;">
+                <!-- Facebook Share (HTML5) -->
+                <div class="fb-share-button" data-type="button"></div>
+            </div>
+            <div class="pull-right">
+                <!-- Google Plus +1 Button -->
+                <div class="g-plusone" data-size="medium"></div>
+            </div>
+		</div>
+    </div>
+<div class="clear">&nbsp;</div>
+</div>
+<script src="lib/js/prism.js"></script>
+<script>
+    // Sending Code to Server
+    $(document).ready(function(){
+        $('label, .colorpicker_submit, ul.the-icons li, input[value="custom"], .border-all input[type="checkbox"]').click(function(){
+            Prism.highlightElement($('#htmlCode')[0]);
+            Prism.highlightElement($('#cssCode')[0]);
+        });
+        $(".button-text").keyup(function(){
+            Prism.highlightElement($('#htmlCode')[0]);
+            Prism.highlightElement($('#cssCode')[0]);
+        });
+    });
+</script>
+
+<!-- Google plus share button script -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<!-- Facebook SDK -->
+<!-- Facebook JavaScript SDK -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script><!-- End:Facebook SDK -->
+</body>
+</html>

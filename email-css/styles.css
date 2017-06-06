@@ -1,0 +1,206 @@
+/*Media Queries*/
+@media screen and (max-width: 400px) {
+.two-column .column,
+    .three-column .column {
+        max-width: 100% !important;
+    }
+    .two-column img {
+        max-width: 100% !important;
+    }
+    .three-column img {
+        max-width: 50% !important;
+    }
+}
+
+@media screen and (min-width: 401px) and (max-width: 620px) {
+.three-column .column {
+        max-width: 33% !important;
+    }
+    .two-column .column {
+        max-width: 50% !important;
+    }
+}
+
+/* Basics */
+body {
+    margin: 0 !important; /*remove all margins, padding, and borders from everything. important because some clients try to overwrite the style*/
+    padding: 0; /*remove all margins, padding, and borders from everything*/
+    background-color: #ffffff; /*best to explicitly set color so outlook or lotus notes don't mess it up*/
+}
+table {
+    border-spacing: 0; /*remove all margins, padding, and borders from everything*/
+    font-family: sans-serif;
+    color: #333333;
+}
+td {
+    padding: 0; /*remove all margins, padding, and borders from everything*/
+}
+img {
+    border: 0; /*remove all margins, padding, and borders from everything*/
+}
+div[style*="margin: 16px 0"] {  /*used in conjunction with the !important to prevent old android apps from adding padding*/
+    margin:0 !important; /*remove all margins, padding, and borders from everything*/
+}
+.wrapper {
+    width: 100%;
+    table-layout: fixed; /*be sure it will stay centered in yahoo mail*/
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+.webkit { 
+    /*We’re setting a max-width of 600px wide on a div called .webkit that is used to contain everything in Apple Mail 6 (and below) and Outlook 2011, and giving it a margin of 0 auto so that it will be centered in Yahoo mail too.*/
+    max-width: 600px;
+    margin: 0 auto; /*remove all margins, padding, and borders from everything*/
+}
+
+.outer { /*we want it to be 100% wide unless the device's screen is larger than 600px, in which case we max-width: 600px*/
+Margin: 0 auto; /*set table to center in chrome and yahoo.  We also have Margin: 0 auto; set here to center our table in Yahoo in Chrome. Though this use of margin is for Yahoo’s sake, I always capitalise Margin so that Outlook.com won’t strip it out–a neat little hack thanks*/
+    width: 100%;
+    max-width: 600px;
+}
+
+.full-width-image img {
+    width: 100%;
+    max-width: 600px; /*Windows Phone does not play nice when the max-width is also set to 100%*/
+    height: auto; /*set height to auto to ensure that our image doesn't end up with the wrong aspect ratio anywhere.*/
+}
+
+.inner {
+padding: 10px;
+}
+p {
+    Margin: 0;
+}
+a {
+    color: #ee6a56;
+    text-decoration: underline;
+}
+.h1 {
+    font-size: 21px;
+    font-weight: bold;
+    Margin-bottom: 18px;
+}
+.h2 {
+    font-size: 18px;
+    font-weight: bold;
+    Margin-bottom: 12px;
+}
+ 
+/* One column layout */
+.one-column .contents {
+    text-align: left;
+}
+.one-column p {
+    font-size: 14px;
+    Margin-bottom: 10px;
+}
+/*Two column layout*/
+.two-column {
+text-align: center;
+    font-size: 0;
+}
+.two-column .column {
+width: 100%;
+    max-width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}
+.contents {
+width: 100%;
+}
+.two-column .contents {
+font-size: 14px;
+    text-align: left;
+}
+.two-column img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+}
+.two-column .text {
+    padding-top: 10px;
+}
+/*Three column layout*/
+.three-column {
+    text-align: center;
+    font-size: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.three-column .column {
+    width: 100%;
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+.three-column .contents {
+    font-size: 14px;
+    text-align: center;
+}
+.three-column img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+}
+.three-column .text {
+    padding-top: 10px;
+}
+
+/* Left sidebar layout */
+.left-sidebar {
+text-align: center;
+    font-size: 0;
+}
+.left-sidebar .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.left-sidebar .left {
+    max-width: 100px;
+}
+.left-sidebar .right {
+    max-width: 500px;
+}
+.left-sidebar .img {
+    width: 100%;
+    max-width: 80px;
+    height: auto;
+}
+
+.left-sidebar .contents {
+font-size: 14px;
+    text-align: center;
+}
+.left-sidebar a {
+    color: #85ab70;
+}
+
+/* Right sidebar layout */
+.right-sidebar {
+text-align: center;
+    font-size: 0;
+}
+.right-sidebar .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.right-sidebar .left {
+    max-width: 100px;
+}
+.right-sidebar .right {
+    max-width: 500px;
+}
+.right-sidebar .img {
+    width: 100%;
+    max-width: 80px;
+    height: auto;
+}
+.right-sidebar .contents {
+    font-size: 14px;
+    text-align: center;
+}
+.right-sidebar a {
+    color: #70bbd9;
+}
