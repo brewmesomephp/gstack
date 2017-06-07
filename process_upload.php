@@ -199,7 +199,7 @@ print "<ul class='thumbs'>";
 
   
     }
-print "</ul>"; // end the unordered list
+print "</ul>"; // end the unordered list!
     
     //part 2 of insertion
 $i=0;
