@@ -421,7 +421,7 @@ if (sizeof($pics))
                     print "<h4>$title</h4><span class='description'>$caption</span></a>";
                 print "</li>
                 ";
-
+ 
 
             }
         print "</ul>"; // end the unordered list

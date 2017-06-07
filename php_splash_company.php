@@ -298,7 +298,7 @@ if (sizeof($pics))
             
                     $youtube = "";
                     $youtube = $portfolio['youtube'];
-
+ 
                 if (strlen($youtube) > 1){
                         clean_youtube_link($youtube);
                          $image = make_embed_youtube($youtube);
