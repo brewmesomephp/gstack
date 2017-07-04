@@ -419,7 +419,17 @@ if (sizeof($pics))
                 $title = $portfolio['title'];
                 $description= $portfolio['description'];
                 $date_added= $portfolio['date_added'];
-                $image = "<img src='upload/$image'>";
+                $youtube = "";
+                    $youtube = $portfolio['youtube'];
+ 
+                if (strlen($youtube) > 1){
+                        clean_youtube_link($youtube);
+                         $image = make_embed_youtube($youtube);
+                    print $image;
+                         make_thumbnail_youtube($youtube);
+                        $title.= " <img src='https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png' style='padding-left:20px;max-height:40px;width:auto;'>";
+                    }
+            
                 
                 include_once "functions.php";
                 $userinfo = get_user($theuser);
