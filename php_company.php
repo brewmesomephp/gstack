@@ -14,7 +14,7 @@ if (!isset($_GET['id']))
     $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
     
     
-    
+     
 
         try 
         {
@@ -350,17 +350,28 @@ if (sizeof($c_p) > 0)
             {
                 $i++;
                 $id = $portfolio['id'];
-                $image = $portfolio['image'];
+                 $image = "upload/". $portfolio['image'];
                 $caption = $portfolio['caption'];
                 $title = $portfolio['title'];
                 $description= $portfolio['description'];
                 $date_added= $portfolio['date_added'];
+                //                youtube
+                
+                $youtube = "";
+                $youtube = $portfolio['youtube'];
+                if (strlen($youtube) > 1){
+//                    clean_youtube_link($youtube);
+//                     make_embed_youtube($youtube);
+//                     make_thumbnail_youtube($youtube);
+                    $image = make_thumbnail_youtube($youtube);
+                    $title.= "<img src='https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png' style='padding-left:20px;max-height:20px;width:auto;'>";
+                }
                 //$image = "<img src='upload/$image'>";
 
 
 
                 //$url=
-                echo "<li style='width:300px;'><a href='#thumb$i' class='thumbnail' style=\"background-image: url('upload/$image')\">";
+                echo "<li style='width:300px;'><a href='#thumb$i' class='thumbnail' style=\"background-image: url('$image')\">";
                     print "<h4>$title</h4><span class='description'>$caption</span></a>";
                 print "</li>
                 ";
@@ -385,6 +396,16 @@ if (sizeof($c_p) > 0)
                 $date_added= $portfolio['date_added'];
                 $image = "<img src='upload/$image'>";
 
+                    $youtube = "";
+                    $youtube = $portfolio['youtube'];
+
+                if (strlen($youtube) > 1){
+                        clean_youtube_link($youtube);
+                         $image = make_embed_youtube($youtube);
+                    print $image;
+                         make_thumbnail_youtube($youtube);
+                        $title.= " <img src='https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png' style='padding-left:20px;max-height:40px;width:auto;'>";
+                    }
 
                 print "
                 <div id='thumb$i'>
