@@ -374,7 +374,7 @@ if (sizeof($pics))
                 $i++;
                 $id = $portfolio['id'];
                 $userid = $portfolio['userid'];
-                $image = $portfolio['image'];
+                $image = "upload/".$portfolio['image'];
                 $caption = $portfolio['caption'];
                 $title = $portfolio['title'];
                 $description= $portfolio['description'];
@@ -383,8 +383,21 @@ if (sizeof($pics))
 
 
 
+                 //                youtube
+                
+                $youtube = "";
+                $youtube = $portfolio['youtube'];
+                if (strlen($youtube) > 1){
+//                    clean_youtube_link($youtube);
+//                     make_embed_youtube($youtube);
+//                     make_thumbnail_youtube($youtube);
+                    $image = make_thumbnail_youtube($youtube);
+                    $title.= "<img src='https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png' style='padding-left:20px;max-height:20px;width:auto;'>";
+                }
+
+
                 //$url=
-                echo "<li style='width:300px;'><a href='#thumb$i' class='thumbnail' style=\"background-image: url('upload/$image')\">";
+                echo "<li style='width:300px;'><a href='#thumb$i' class='thumbnail' style=\"background-image: url('$image')\">";
                     print "<h4>$title</h4><span class='description'>$caption</span></a>";
                 print "</li>
                 ";

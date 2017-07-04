@@ -1,4 +1,5 @@
 <?php
+include_once("functions.php");
 session_start();
 if (!isset($_SESSION['id']))
     {
@@ -7,7 +8,7 @@ if (!isset($_SESSION['id']))
 $sess_id = $_SESSION['id'];
 
 
-
+ 
 
 
 function getContent($sess_id) 
@@ -107,11 +108,18 @@ function getContent($sess_id)
         
         $title= addslashes(strip_tags($_POST['title']));
         $description= addslashes(strip_tags($_POST['description']));
-       
+       $youtube = addslashes($_POST['youtube']);
+        if (substr($youtube, -1) != '/'){
+            $youtube.="/";
+        }
+        
+                    include_once("functions.php");
+        
+
         
         
         
-        $query = "INSERT INTO `gamerstack`.`company_portfolio` (`id`, `userid`, `title`, `caption`, `description`, `image`, `date_added`) VALUES (NULL, '$sess_id',  '$title', '$caption', '$description', '$image', CURRENT_TIMESTAMP);";
+        $query = "INSERT INTO `gamerstack`.`company_portfolio` (`id`, `userid`, `title`, `caption`, `description`, `image`, `youtube`, `date_added`) VALUES (NULL, '$sess_id',  '$title', '$caption', '$description', '$image', '$youtube', CURRENT_TIMESTAMP);";
         $sql = $dbs->prepare($query);
         $sql->execute();
     }
@@ -155,17 +163,25 @@ print "<ul class='thumbs'>";
     {
         $i++;
         $id = $row['id'];
-        $image = $row['image'];
+        $image = "upload/".$row['image'];
         $caption = $row['caption'];
         $title = $row['title'];
         $description= $row['description'];
         $date_added= $row['date_added'];
         //$image = "<img src='upload/$image'>";
-
+ $youtube = "";
+        $youtube = $row['youtube'];
+        if (strlen($youtube) > 1){
+            clean_youtube_link($youtube);
+             make_embed_youtube($youtube);
+             make_thumbnail_youtube($youtube);
+            $image = make_thumbnail_youtube($youtube);
+            $title.= "<img src='https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png' style='padding-left:20px;max-height:20px;width:auto;'>";
+        }
         
 
         //$url=
-        echo "<li style='width:300px;'><a href='#thumb$i' class='thumbnail' style=\"background-image: url('upload/$image')\">";
+        echo "<li style='width:300px;'><a href='#thumb$i' class='thumbnail' style=\"background-image: url('$image')\">";
             print "<h4>$title</h4><span class='description'>$caption</span></a>";
         print "</li>
         ";
@@ -181,13 +197,22 @@ foreach($data as $row)
     {
         $i++;
         $id = $row['id'];
-        $image = $row['image'];
+        $image = "upload/".$row['image'];
         $caption = $row['caption'];
         $title = $row['title'];
         $description= $row['description'];
         $date_added= $row['date_added'];
-        $image = "<img src='upload/$image'>";
-
+        $image = "<img src='$image'>";
+    
+        $youtube = "";
+        $youtube = $row['youtube'];
+    
+    if (strlen($youtube) > 1){
+            clean_youtube_link($youtube);
+             $image = make_embed_youtube($youtube);
+             make_thumbnail_youtube($youtube);
+            $title.= " <img src='https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png' style='padding-left:20px;max-height:40px;width:auto;'>";
+        }
         
         print "
         <div id='thumb$i'>

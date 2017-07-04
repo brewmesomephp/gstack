@@ -89,7 +89,7 @@ if (get_account_type($sess_id))
                                         <input type="text" name="youtube" class="form-control input-lg" placeholder="Youtube URL..."/> 
 
 
-<label>Upload your screenshot</label>
+<label>Upload your screenshot</label> 
 
                                         <input type="file" accept="image/*" name="fileToUpload" id="image" class="form-control input-lg" /> 
                                         <br>

@@ -17,7 +17,7 @@ function getContent($sess_id)
     
     
     
-
+ 
         try 
         {
             $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);

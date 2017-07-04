@@ -85,7 +85,7 @@ if (!get_account_type($sess_id))
                                         <textarea  class="form-control input-lg" name="description" style="width:100%; height:100px;" placeholder="Description..."/></textarea>
                                         <br>
 
-
+                                        <input type="text" name="youtube" class="form-control input-lg" placeholder="Youtube URL..."/> 
 
 
                                         <input type="file" class="form-control input-lg"  accept="image/*" name="fileToUpload" id="image" /> 
@@ -152,7 +152,7 @@ include_once "functions.php";
 bug_report_js();
 ?>
 
-<script>
+<script>  
 $(document).ready(function () { 
         $('body').on('click', '.upload', function(){
             // Get the form data. This serializes the entire form. pritty easy huh!
