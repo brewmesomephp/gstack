@@ -825,4 +825,408 @@ function clean_youtube_link($youtube) {
   
 }
 
+
+
+function getBusinessThumbnailsAndInfo($dbs, $limit=8, $print=false)
+/*displays the row/rows of thumbnails for businesses on home page or whereever*/{
+
+            $query = "SELECT * FROM users WHERE picture!='' AND account!=0 AND picture!='default/default.jpg' ORDER BY added DESC LIMIT 8";
+            
+            
+            $sql = $dbs->prepare($query);
+            $sql->execute();
+            $businesses = $sql->fetchAll();
+            $i = 0;
+            if (sizeof($businesses) > 0)
+            {
+                if ($print == false){
+                    
+                    return $businesses;
+                }
+                else{
+                    
+//                    end sizeof
+            
+//                            This is what you add to your page to get the info from the returning of $business
+//                        $businesses = getBusinessThumbnailsAndInfo(4);
+                        foreach($businesses as $business)
+                        {
+                            $i++;
+                            $bname = $business['company'];
+                            $btitle = $business['skillset'];
+                            $bimage = $business['picture'];
+                            $businessid = $business['id'];
+                            $baccount = $business['account'];
+                            $bimg[$i] = $bimage;
+                            if ($baccount == 1)
+                            {
+                                $burl[$i] = "php_company.php?id=$businessid";
+                            }
+                            else
+                                $burl[$i] = "php_profile.php?id=$businessid";
+
+                            $bcaption[$i] = "$bname";
+                    
+                        }
+                    //this prints out the actual fuckin row with the images and shit
+                    ?>
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$burl[1]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$bimg[1]?>">
+                                </a><br /><a href="<?=$burl[1]?>"><?=$bcaption[1]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$burl[2]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$bimg[2]?>">
+                                </a><br /><a href="<?=$burl[2]?>"><?=$bcaption[2]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$burl[3]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$bimg[3]?>">
+                                </a><br /><a href="<?=$burl[3]?>"><?=$bcaption[3]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$burl[4]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$bimg[4]?>">
+                                </a><br /><a href="<?=$burl[4]?>"><?=$bcaption[4]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                    
+                }
+
+
+            }
+            return $businesses;
+        }
+
+
+function getCandidateThumbnailsAndInfo($dbs, $limit=8, $print=false){
+
+            $query = "SELECT * FROM users WHERE picture!='' AND account!=1 AND picture!='default/default.jpg' ORDER BY added DESC LIMIT 8";
+            
+            
+            $sql = $dbs->prepare($query);
+            $sql->execute();
+            $workers = $sql->fetchAll();
+            $i = 0;
+            if (sizeof($workers) > 0)
+            {
+                if ($print == false){
+                    
+                    return $workers;
+                }
+                else{
+                    
+//                    end sizeof
+            
+//                            This is what you add to your page to get the info from the returning of $worker
+//                        $workers = getBusinessThumbnailsAndInfo(4);
+                        foreach($workers as $worker)
+                        {
+                            $i++;
+                            $name = $worker['first_name'] . " " . $worker['last_name'];
+                            $title = $worker['skillset'];
+                            $image = $worker['picture'];
+                            $workerid = $worker['id'];
+                            $account = $worker['account'];
+                            $img[$i] = $image;
+                            if ($account == 1)
+                            {
+                                $url[$i] = "php_company.php?id=$workerid";
+                            }
+                            else
+                                $url[$i] = "php_profile.php?id=$workerid";
+
+                            $caption[$i] = "$name";
+                    
+                        }
+                    //this prints out the actual fuckin row with the images and shit
+                    ?>
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$url[1]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[1]?>">
+                                </a><br /><a href="<?=$url[1]?>"><?=$caption[1]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$url[2]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[2]?>">
+                                </a><br /><a href="<?=$url[2]?>"><?=$caption[2]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$url[3]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[3]?>">
+                                </a><br /><a href="<?=$url[3]?>"><?=$caption[3]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href="<?=$url[4]?>">
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[4]?>">
+                                </a><br /><a href="<?=$url[4]?>"><?=$caption[4]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                    
+                }
+
+
+            }
+            return $workers;
+        }
+
+
+
+function getProjectThumbnailsAndInfo($dbs, $limit=8, $print=false)
+{
+                            
+					        
+        $query = "SELECT * FROM games WHERE image!='' ORDER BY added DESC LIMIT 4";
+        $sql = $dbs->prepare($query);
+        $sql->execute();
+        $games = $sql->fetchAll();
+        $gamelist = "";
+        foreach($games as $game)
+        {
+            $gamelist = $gamelist . $game['id'] . ","; 
+        }
+        $gamelist = explode(",",$gamelist); 
+
+        $gamelist = get_games_links_with_id_by_array($gamelist);
+        //now print out the list of games.
+        $i=1;
+        if (sizeof($gamelist) > 0)
+        {
+           if ($print == false){
+               return $gamelist;
+           }
+            else{
+                foreach($gamelist as $game)
+                {
+                    $game_id[$i] = $game[0];
+                    $link[$i] = $game[1];
+                    $title[$i] = $game[2];
+                    $game_image[$i] = $game[3];
+                    $company_id[$i] = $game[4];
+                    $company_name[$i] = $game[5];
+                    $company_image[$i] = $game[6];
+                    if ($game_image[$i] == '')
+                    {
+                        $game_image[$i] = "default/default.jpg";
+                        continue;
+                    }
+                    $i++;
+                    
+                }
+            
+             ?>
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-2 col-xs-6">
+                            <div class="text-center">
+                                <a href='php_game.php?gameid=<?=$game_id[1]?>'>
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$game_image[1]?>">
+                                </a><br /><a href='php_game.php?gameid=<?=$game_id[1]?>'><?=$title[1]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href='php_game.php?gameid=<?=$game_id[2]?>'>
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$game_image[2]?>">
+                                </a><br /><a href='php_game.php?gameid=<?=$game_id[2]?>'><?=$title[2]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href='php_game.php?gameid=<?=$game_id[3]?>'>
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$game_image[3]?>">
+                                </a><br /><a href='php_game.php?gameid=<?=$game_id[3]?>'><?=$title[3]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="text-center">
+                                <a href='php_game.php?gameid=<?=$game_id[4]?>'>
+                                    <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$game_image[4]?>">
+                                </a><br /><a href='php_game.php?gameid=<?=$game_id[4]?>'><?=$title[4]?></a>
+                                <h3 class="text-center"></h3>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+            }
+        }
+}
+
+
+
+
+
+
+
+
+
+
+function getJobList($dbs, $limit=5, $print=true)                                   
+{
+    $query = "SELECT * FROM jobs ORDER BY added DESC LIMIT 5";
+        $sql = $dbs->prepare($query);
+        $sql->execute();
+        $jobs = $sql->fetchAll();
+        
+
+        if (sizeof($jobs) > 0)
+        {
+
+            print "<li id='id-resume'>
+                                        <div class='timeline-badge default'><i class='fa fa-file'></i></div>
+                                        <h1 class='timeline-head'>JOBS</h1>
+                                    </li>
+                                    <li id='resume'>
+                                        <div class='timeline-badge warning'></div>
+                                        <div class='timeline-panel'>
+                                            <h1>Latest Job Listings</h1>";
+            
+
+            foreach($jobs as $job) 
+            {
+                $id = $job['id'];
+                $theid = $job['userid'];
+                $compensation = $job['compensation'];
+                $title = $job['title'];
+                $location= $job['location'];
+                $remote= $job['remote'];
+                $description= $job['description'];
+                $start_day = $job['start_day'];
+                $start_month= $job['start_month'];
+                $start_year= $job['start_year'];
+                $volunteer= $job['volunteer'];
+                $permanent = $job['permanent'];
+                if ($permanent == '')
+                {
+                    $permanent = " ";
+                }
+
+                if ($volunteer == 1)
+                {
+                    $compensation = "Volunteer Position";
+                }
+                else
+                {
+                    $compensation = "Paid Position";
+                }
+                if ($remote == 1)
+                {
+                    $location = "Remote";
+                }
+                if ($permanent == 1)
+                {
+                   $permanent = "Permanent Position"; 
+                }
+                else
+                {
+                    $permanent = "Temporary Position";
+                }
+                include_once "functions.php";
+                $username = get_user($theid);
+                $username = $username['name'];
+
+                //print "$compensation, $title, $location, $remote, $description, $start_month, $start_year, $end_month, $end_year, $volunteer";
+                /*print "
+                <div class='hr-left'></div>
+                    <div class='work-experience'>
+                        <h3>$title: $compensation (<a class='remove' id='$id' href='#'>X</a>)</h3>
+                        <small><i class='fa fa-calendar'></i> $start_month/$start_year - $volunteer, $location $remote</small>
+                        <p>$description</p>
+                    </div>";*/
+                print "
+                <hr>
+                <div class='work-experience'>
+                    <h2><a href='php_company.php?id=$theid'>$username</a></h2>
+                    <h3><a href='view_job.php?jobid=$id'>$title</a></h3>
+                    <h4>Location: $location</h4>
+                    <h5>$compensation</h5>
+                    <small><i class='fa fa-calendar'></i>Start Date: $start_month/$start_day/$start_year</small>
+                    <p>$description</p>
+                </div>
+                ";
+
+
+
+
+
+            }
+        print "</div>
+                                    </li>";
+        }//end sizeof
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+?>                            
+                            
+                                        
+
+					        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

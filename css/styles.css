@@ -154,6 +154,7 @@ section {
   
 #section2 {
 	background-color: #fff;
+    min-height:1940px !important;
 }
 
 #section3 {

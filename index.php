@@ -17,8 +17,19 @@
             echo "Connection failed: " . $e->getMessage();
         }
         
-        
-        $query = "SELECT * FROM users WHERE picture!='' AND picture!='default/default.jpg' ORDER BY added DESC LIMIT 8";
+        include_once "functions.php";
+
+
+//        function getUserThumbnailsAndInfo($limit=8){
+//            
+//            return $thumbnailInfo;
+//        }
+//
+//        function getProjectThumbnailsAndInfo($limit=8){
+//            
+//            return $thumbnailInfo;
+//        }
+        $query = "SELECT * FROM users WHERE picture!='' AND account='0' AND picture!='default/default.jpg' ORDER BY added DESC LIMIT 8";
         $sql = $dbs->prepare($query);
         $sql->execute();
         $workers = $sql->fetchAll();
@@ -66,9 +77,17 @@
       <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
 
 
+<!--
+Remote
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" rel="stylesheet" />
+-->
+      
+<!--      Local-->
+      <link rel="stylesheet" href="css/index/bootstrap.min.css" />
+    <link href="css/index/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/index/animate.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="css/styles.css" />
   </head>
@@ -124,44 +143,40 @@
     <div class="container v-center">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Users</h1>
+                <h2 class="text-center">Users</h1>
                 <hr>
             </div>
         </div>
+        <?php $workers = getCandidateThumbnailsAndInfo($dbs, 4, 1); ?>
         <div class="row">
-            <div class="col-sm-2 col-sm-offset-2 col-xs-6">
-                <div class="text-center">
-                    <a href="<?=$url[1]?>">
-                        <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[1]?>">
-                    </a><br /><a href="<?=$url[1]?>"><?=$caption[1]?></a>
-                    <h3 class="text-center"></h3>
-                </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-                <div class="text-center">
-                    <a href="<?=$url[2]?>">
-                        <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[2]?>">
-                    </a><br /><a href="<?=$url[2]?>"><?=$caption[2]?></a>
-                    <h3 class="text-center"></h3>
-                </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-                <div class="text-center">
-                    <a href="<?=$url[3]?>">
-                        <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[3]?>">
-                    </a><br /><a href="<?=$url[3]?>"><?=$caption[3]?></a>
-                    <h3 class="text-center"></h3>
-                </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-                <div class="text-center">
-                    <a href="<?=$url[4]?>">
-                        <img style="width:100px;height:100px;" class="img-circle img-responsive img-thumbnail" src="upload/<?=$img[4]?>">
-                    </a><br /><a href="<?=$url[4]?>"><?=$caption[4]?></a>
-                    <h3 class="text-center"></h3>
-                </div>
+            <div class="col-md-12">
+                <h2 class="text-center">Businesses</h1>
+                <hr>
             </div>
         </div>
+        <?php $businesses = getBusinessThumbnailsAndInfo($dbs, 4, 1); ?>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Games</h1>
+                <hr>
+            </div>
+        </div>
+        <?php $projects = getProjectThumbnailsAndInfo($dbs, 4, 1) ?>
+        
+        
+        <?php $jobs = getJobList($dbs, 5, 1); ?> 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <div class="row">
             <div class="col-sm-4">
                 <div class="row">
@@ -271,7 +286,7 @@ $img[++$i] = "gamer-100.png";
 $caption[$i] = "Gamer";
 
 $img[++$i] = "youtube-100.png";
-$caption[$i] = "YouTuber";
+$caption[$i] = "Twitch.tv / YouTuber";
 
 $img[++$i] = "3d_modelling-100.png";
 $caption[$i] = "Animator / Modeler";
