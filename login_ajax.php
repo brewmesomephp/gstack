@@ -133,6 +133,7 @@ $(function() {
 			url: "process_login.php",
 			data: $('form.awards').serialize(),
         		success: function(msg){
+                    msg = msg.replace(/ /g,'')
                       if (msg == "fail_pass")
                       {
                           $("#alarm").html("Make sure your passwords match.");
@@ -164,7 +165,7 @@ $(function() {
                           }
                           else
                           {
-                              
+                              alert (msg);
                             $("#alarm").html("An unknown error occurred. Please check your information then try again.");   
                           }
                       }
