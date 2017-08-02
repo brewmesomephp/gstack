@@ -21,15 +21,17 @@ function getContent()
         
     
     
-    //add a new item to DB
-    if (isset($_POST['email'])) 
-    {
-        //
+//    add a new item to DB
+        if (isset($_POST['email'])) 
+        {
+
         $email = strip_tags($_POST['email']);
         $pass = strip_tags($_POST['pass']);
         
         $email = addslashes($email);
         $pass = addslashes($pass);
+        
+
         
         include_once "functions.php";
         if (!validate_email($email))
@@ -74,7 +76,7 @@ function getContent()
             $query = "INSERT INTO logins (success, login_time, email, password) VALUES ('0', CURRENT_TIMESTAMP,'$email', '$pass' )";
                     $sql = $dbs->prepare($query);
                     $sql->execute();
-            return "fail_email";
+            return "fail_email"; //returns that the email is incorrect
             
         }
         
