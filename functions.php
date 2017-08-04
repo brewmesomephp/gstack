@@ -227,7 +227,7 @@ id, userid, title, description, location, remote, volunteer, compensation, perma
     return $jobs;
 }
 
-function print_job($job) //prints the job by id
+function print_job($job, $apply=0) //prints the job by id
 {
     $id = $job['id'];
     
@@ -243,6 +243,8 @@ function print_job($job) //prints the job by id
     $volunteer= $job['volunteer'];
     $permanent = $job['permanent'];
     $userid = $job['userid'];
+    
+
 
     if ($volunteer == 1)
     {
@@ -270,8 +272,29 @@ function print_job($job) //prints the job by id
         <h5>$compensation</h5>
         <small><i class='fa fa-calendar'></i>Start Date: $start_month/$start_day/$start_year</small>
         <p>$description</p>
-        <p>$description2</p>
-        <p><a href='php_company.php?id=$userid'>Inquire Now</a></p>
+        <p>$description2</p>";
+        
+    
+    if ($apply == 1){
+        print "<p style='color:green;'>Application Sent</p>";
+    }
+    else{
+        if (!empty($_SESSION['id']))
+            {
+                print "
+                    <form action='view_job.php?jobid=$id&apply=1' method='post'>
+                    Cover Letter (recommended): <textarea name='cover' class='form-control input-lg' name='message' rows='12' placeholder='Dear...'></textarea>
+                    <input type='submit' class='btn btn-lg btn-primary btn-block'>
+                    </form>";
+        //        print "<p><a href='view_job.php?jobid=$id&apply=1'>One Click Apply</a></p>";
+            }
+        else
+            {
+                     print "<p><a href='login_ajax.php'>Log In to Apply</a></p>";
+
+        }
+    }
+    print "
     </div>
     ";
 }

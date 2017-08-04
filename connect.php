@@ -4,6 +4,8 @@ if (!isset($_SESSION['id']))
     {
         print "";
     }
+else
+    {
 $sess_id = $_SESSION['id'];
 
 $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
@@ -38,5 +40,5 @@ $query = "SELECT * FROM users WHERE id='$sess_id'";
         
         
         
-
+}
 ?>

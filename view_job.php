@@ -82,8 +82,13 @@ include "connect.php"; if (empty($_SESSION)){$not_in = true; ;} else {$not_in = 
 if (!isset($_SESSION['id']))
     {
         print "";
+        $loggedin=false;
     }
-$sess_id = $_SESSION['id'];
+else{
+        $userid = $_SESSION['id'];
+    $sess_id = $_SESSION['id'];
+
+    }
 
 include_once "functions.php";
 if (isset($_GET['jobid']))
@@ -91,9 +96,31 @@ if (isset($_GET['jobid']))
     $jobid = $_GET['jobid'];
     $job = get_job($jobid);
     $company = get_user($job['userid']);
+    $companyid = $job['userid'];
     $company_name = $company['name'];
     print "<h2><a href='php_company.php?id={$company['id']}'>$company_name</a></h2>";
-    print_job($job);
+    
+    if (isset($_GET['apply'])){
+        if (isset($_POST['cover']) && $loggedin){
+                $cover = $_POST['cover'];
+                $dbs = db_connection();
+                $cover= addslashes(strip_tags($_POST['cover']));
+                $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
+                $sql = $dbs->prepare($query);
+                $sql->execute();
+//                $query = "UPDATE users SET bio = '$bio', first_name='$first_name', last_name='$last_name', skillset='$skillset', zip='$zip'
+//        , address='$address', city='$city', state='$state', country='$country', website='$website' WHERE id='$sess_id'";
+            print_job($job, 1);
+            }
+            else{
+                print_job($job);
+            }
+        
+    }
+    else{
+            
+            print_job($job);
+    }
 }
 
 
