@@ -105,7 +105,7 @@ if (isset($_GET['jobid']))
         if (isset($_POST['cover']) && $loggedin){
                 $cover = $_POST['cover'];
                 $dbs = db_connection();
-                $cover= addslashes(strip_tags($_POST['cover']));
+                $cover= addslashes(strip_tags($_POST['cover'])); 
                 $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
                 $sql = $dbs->prepare($query);
                 $sql->execute();

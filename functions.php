@@ -208,7 +208,7 @@ id, userid, title, description, location, remote, volunteer, compensation, perma
         $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
         // set the PDO error mode to exception
         $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+  
     }
     catch(PDOException $e)
     {

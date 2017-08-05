@@ -120,7 +120,7 @@ include_once "functions.php";
                 $game_ids = $row['games'];
                 $game_ids = explode(",",$game_ids);
                 $game_links = get_games_links_by_array($game_ids);
-                
+                 
                 
                 if ($from['account'] == 0)
                 {

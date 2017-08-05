@@ -101,7 +101,7 @@ include_once "functions.php";
                 $time_read = $row['time_read'];
                 $time_responded = $row['time_responded'];
                 
-                
+                 
                 
 //                row in db of job
                 $job = get_job($jobid);

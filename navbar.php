@@ -42,7 +42,7 @@ function navbar($userid, $account)
         }
         else if ($account == '1')
         {
-            print "
+            print " 
             <ul class='nav navbar-nav navbar-left'>
                 
                 <li class='page-scroll'><img src='gg_small.png'></li>
