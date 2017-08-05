@@ -86,7 +86,8 @@ if (!isset($_SESSION['id']))
     }
 else{
         $userid = $_SESSION['id'];
-    $sess_id = $_SESSION['id'];
+        $sess_id = $_SESSION['id'];
+        $loggedin = 1;
 
     }
 
@@ -108,6 +109,11 @@ if (isset($_GET['jobid']))
                 $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
                 $sql = $dbs->prepare($query);
                 $sql->execute();
+            
+//            Now add a client side (company respond to the application) 8/3/17
+            
+            
+            
 //                $query = "UPDATE users SET bio = '$bio', first_name='$first_name', last_name='$last_name', skillset='$skillset', zip='$zip'
 //        , address='$address', city='$city', state='$state', country='$country', website='$website' WHERE id='$sess_id'";
             print_job($job, 1);

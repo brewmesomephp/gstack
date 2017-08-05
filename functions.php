@@ -544,13 +544,16 @@ function dashboard_links()
     $account_type = get_account_type($_SESSION['id']);
     $type="";
     $invites = "/   <a href='invites.php'>Invites</a>";
+    $new_apps = get_num_new_applications($_SESSION['id']);
     if ($account_type == 1)
     {
         $type="company_"; 
         $invites = "";
     }
-    print "<h5><a href='messages.php'>Messages</a> / <a href='notifications.php'>Notifications</a> / <a href='{$type}job_listings.php'>Manage My Jobs</a> / <a href='showed_interest.php'>Requests to Connect</a> $invites</h5>";
+    print "<h5><a href='applications.php'>Applications <b><i>($new_apps)</i></b></a> / <a href='jobs_ajax.php'>My Job Listings</a> / <a href='messages.php'>Messages</a> / <a href='notifications.php'>Notifications</a> / <a href='{$type}job_listings.php'>Manage My Jobs</a> / <a href='showed_interest.php'>Requests to Connect</a> $invites</h5>";
 }
+
+
 
 function validate_email($email)
 {
@@ -668,23 +671,7 @@ function get_notifications($id)
 
 function num_new_mail($id)
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
-    
+    $dbs = db_connection();
     $new = 0;
     //get number of unread messages
     $query = "SELECT * FROM messages WHERE opened='0' AND toid='$id'";
@@ -692,29 +679,26 @@ function num_new_mail($id)
     $sql->execute();
     $results = $sql->fetchAll();
     $new += sizeof($results);
-    
+    return $new;
+}
+
+function get_num_new_applications($id)
+{
+    $id = $_SESSION['id'];
+    $dbs = db_connection();
+    $new = 0;
+    //get number of unread messages
+    $query = "SELECT * FROM `apply_now` WHERE `read` = '0' AND `companyid` = '$id'";
+    $sql = $dbs->prepare($query);
+    $sql->execute();
+    $results = $sql->fetchAll();
+    $new += sizeof($results);
     return $new;
 }
 
 function mail_setting($id)
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
-    
+    $dbs = db_connection();
     $new = 0;
     //get number of unread messages
     $query = "SELECT * FROM mail_settings WHERE userid='$id'";

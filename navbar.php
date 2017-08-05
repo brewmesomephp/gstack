@@ -11,6 +11,7 @@ function navbar($userid, $account)
         include_once "functions.php";
         $notifications = get_notifications($_SESSION['id']);
         $new_mail = num_new_mail($_SESSION['id']);
+        $new_apps = get_num_new_applications($_SESSION['id']);
         $m_n = "";
         $n_n = "";
         if ($new_mail > 0)
@@ -30,7 +31,7 @@ function navbar($userid, $account)
                 <li class='page-scroll'><a href='php_splash_candidate.php'>Home</a></li>
                 <li class='page-scroll'><a href='php_profile.php?id=$userid'>Me</a></li>
                 <li class='page-scroll'><a href='php_profile_ajax.php'>Edit</a></li>
-                <li class='page-scroll'><a href='job_listings.php'>Positions</a></li>
+                <li class='page-scroll'><a href='job_listings.php'>Jobs</a></li>
                 <li class='page-scroll'><a href='messages.php'>Messages <b><i id='msgs'>$m_n</i></b> </a></li>
                 <li class='page-scroll'><a href='notifications.php'>Notifications $n_n </a></li>
                 <li class='page-scroll'><a href='search.php'>Search</a></li>
@@ -49,7 +50,7 @@ function navbar($userid, $account)
                 <li class='page-scroll'><a href='php_company.php?id=$userid'>Me</a></li>
                 <li class='page-scroll'><a href='game_listings.php'>My Games</a></li>
                 <li class='page-scroll'><a href='php_company_profile_ajax.php'>Edit</a></li>
-                <li class='page-scroll'><a href='company_job_listings.php'>Positions</a></li>
+                <li class='page-scroll'><a href='company_job_listings.php'>Jobs <b><i>($new_apps)</i></b></a></li>
                 <li class='page-scroll'><a href='messages.php'>Messages <b><i id='msgs'>$m_n</i></b> </a></li>
                 <li class='page-scroll'><a href='notifications.php'>Notifications $n_n </a></li>
                 <li class='page-scroll'><a href='search.php'>Search</a></li>

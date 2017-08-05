@@ -311,7 +311,7 @@ $(function() {
             
             
 $( document ).ajaxComplete(function() {
-  $( "#skill_div" ).append( "Triggered ajaxComplete handler." );
+//  $( "#skill_div" ).append( "Triggered ajaxComplete handler." );
     jQuery('.skillbar').each(function(){
 		jQuery(this).find('.skillbar-bar').animate({
 			width:jQuery(this).attr('data-percent')
