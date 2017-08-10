@@ -86,7 +86,7 @@ include_once "functions.php";
         
     //add a new item to DB
             print "<h3>Recent Applications</h3>";
-            $query = "SELECT * FROM `apply_now` WHERE `companyid`='$sess_id' AND `read`='0' ORDER BY `time_applied` DESC";
+            $query = "SELECT * FROM `apply_now` WHERE `companyid`='$sess_id' ORDER BY `time_applied` DESC";
             $sql = $dbs->prepare($query);
             $sql->execute();
             $rows = $sql->fetchAll();
