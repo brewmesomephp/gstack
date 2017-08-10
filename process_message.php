@@ -19,22 +19,8 @@ print "
     print "<div class='hr-left'></div>";
  if (isset($_POST['message'])) 
     {
-      $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+      include_once "functions.php";
+    $dbs = db_connection();
         
     
     
@@ -84,22 +70,8 @@ print "
 if (isset($_POST['to']))
 {
     $contact_id = $_POST['to'];
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+    include_once "functions.php";
+    $dbs = db_connection();
     
     if (isset($_POST['msg']))
     {
@@ -255,21 +227,8 @@ if (isset($_POST['to']))
             </div>";*/
   
     }
-        $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+        include_once "functions.php";
+    $dbs = db_connection();
     $contact = array_unique($contact);
     $contact = array_values($contact);
     if (sizeof($contact) > 0)

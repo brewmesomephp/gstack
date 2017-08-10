@@ -78,22 +78,8 @@ if (!get_account_type($sess_id))
                                     
                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <?php
-$servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+include_once "functions.php";
+    $dbs = db_connection();
 
         
         $query = "SELECT * FROM games WHERE userid='$sess_id'";

@@ -1,8 +1,5 @@
 <?php
 if(session_id() == ''){session_start();}
-$servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
     
 include_once "functions.php";
 $query = array();
@@ -14,17 +11,8 @@ if (isset($sess_id))
 {
     print "<div  style='width: calc(100% - 30px); background-color:#CCCCCC;padding:20px 20px 20px 20px;border-color:#000000;border-radius:7px;'>";
     $user = get_user($sess_id); 
-    try 
-    {
-        $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-        // set the PDO error mode to exception
-        $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    
+    $dbs = db_connection();
     //if it is a candidate
     $percent = 0;
     $empty = array();

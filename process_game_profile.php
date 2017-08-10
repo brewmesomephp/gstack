@@ -14,22 +14,8 @@ $gameid = $_GET['gameid'];
 function getContent($sess_id) 
 {
     
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+    include_once "functions.php";
+    $dbs = db_connection();
         
     
     

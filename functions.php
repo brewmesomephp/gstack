@@ -1,23 +1,10 @@
 <?php
+//1197
+$GLOBALS['dbs'] = NULL;
+
 function get_user($id) //return a variable with most of the db info
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
-        
+$dbs = db_connection();
     
     $user;
     //add a new item to DB
@@ -92,13 +79,7 @@ function get_user($id) //return a variable with most of the db info
                         $user['icon'] = $icon_loc . "gamer-100.png"; 
                 }
                 
-                
-                
-                
-                
-                
-                
-                
+                     
                 
                 
                 if ($user['image'] == '')
@@ -122,42 +103,37 @@ function num_results($query) //return an int value of the num of rows in a retur
 }
 
 function db_connection()
+/*Connects to the database and sets it global so we don't keep reconnecting.*/
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    try 
-    {
-        $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-        // set the PDO error mode to exception
-        $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
-    return $dbs;
-}
-
-function get_user_by_email($email) //return a variable with most of the db info
-{
-    $id = $email;
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
+    if (($GLOBALS['dbs'] == NULL)){
+        
     
-    
-    
-
+        $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
         try 
         {
             $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
             // set the PDO error mode to exception
             $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
+
         }
         catch(PDOException $e)
         {
             echo "Connection failed: " . $e->getMessage();
         }
-        
+        $GLOBALS['dbs'] = $dbs;
+        return $dbs;
+    }
+    else{
+
+        return $GLOBALS['dbs'];
+    }
+}
+
+function get_user_by_email($email) //return a variable with most of the db info
+{
+    $id = $email;
+
+    $dbs = db_connection();        
     
     $user;
     //add a new item to DB
@@ -202,18 +178,7 @@ function get_job($id) //return a variable with the job array
  /*jobs
 id, userid, title, description, location, remote, volunteer, compensation, permanent , start_day, start_month, start_year, zip, added*/
    
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    try 
-    {
-        $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-        // set the PDO error mode to exception
-        $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $dbs = db_connection();
 
     
 
@@ -244,8 +209,6 @@ function print_job($job, $apply=0) //prints the job by id
     $permanent = $job['permanent'];
     $userid = $job['userid'];
     
-
-
     if ($volunteer == 1)
     {
         $compensation = "Volunteer Position";
@@ -254,8 +217,6 @@ function print_job($job, $apply=0) //prints the job by id
     {
         $compensation = "Paid Position";
     }
-
-
     //print "$compensation, $title, $location, $remote, $description, $start_month, $start_year, $end_month, $end_year, $volunteer";
     /*print "
     <div class='hr-left'></div>
@@ -306,22 +267,7 @@ function get_user_by_job($id)
 
 function get_account_type($id)
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+    $dbs = db_connection();
         
     
     $user;
@@ -341,28 +287,9 @@ function get_account_type($id)
 
 function get_games($id)
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
-        
-    
+    $dbs = db_connection();
     $user;
     //add a new item to DB
-    
-        
             $query = "SELECT * FROM games WHERE userid='$id'";
             $sql = $dbs->prepare($query);
             $sql->execute();
@@ -372,22 +299,7 @@ function get_games($id)
 
 function get_game($id) //return the db var for the game
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+    $dbs = db_connection();
         
     
     $user;
@@ -406,22 +318,7 @@ function get_games_links_by_array($id_list)
     //remove empty spaces
     $id_list = array_values(array_filter($id_list));
     
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-    try 
-    {
-        $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-        // set the PDO error mode to exception
-        $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $dbs = db_connection();
 
 
     $i = 0;
@@ -453,22 +350,7 @@ function get_games_links_with_id_by_array($id_list)
     //remove empty spaces
     $id_list = array_values(array_filter($id_list));
     
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-    try 
-    {
-        $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-        // set the PDO error mode to exception
-        $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $dbs = db_connection();
 
 
     $i = 0;
@@ -510,22 +392,7 @@ function get_games_links_with_id_by_array($id_list)
 
 function get_company_by_game($id)
 {
-        $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+        $dbs = db_connection();
     
     $query = "SELECT * FROM games WHERE id='$id'";
     $sql = $dbs->prepare($query);
@@ -552,8 +419,6 @@ function dashboard_links()
     }
     print "<h5><a href='applications.php'>Applications <b><i>($new_apps)</i></b></a> / <a href='jobs_ajax.php'>My Job Listings</a> / <a href='messages.php'>Messages</a> / <a href='notifications.php'>Notifications</a> / <a href='{$type}job_listings.php'>Manage My Jobs</a> / <a href='showed_interest.php'>Requests to Connect</a> $invites</h5>";
 }
-
-
 
 function validate_email($email)
 {
@@ -634,22 +499,7 @@ function validate_name($name)
 
 function get_notifications($id)
 {
-    $servername = "localhost";    $username = "cm3rt"; $password = "Laceration6?"; $db = "gamerstack";
-    
-    
-    
-
-        try 
-        {
-            $dbs = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-            // set the PDO error mode to exception
-            $dbs->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
+    $dbs = db_connection();
     
     $new = 0;
 
@@ -723,9 +573,6 @@ function bug_report()
 					          	<div class='timeline-panel'>
 					          		<h1>Report Bugs</h1>
 					          		<div class='hr-left'></div>
-                                    
-                                   
-                                        
 					          		<p id='message_return' style='clear:both;'>Please report bugs and suggestions here. We will personally respond via the email you've registered, as well as on your account. Thank you.</p>
 					          		<form class='send_msg'>
 					          			<div class='row'>
@@ -739,20 +586,12 @@ function bug_report()
 					          			<div class='form-group'>
 					          				<button class='btn btn-lg btn-primary btn-block' type='button' id='btn_msg'>SEND</button>
 					          			</div>
-					          		</form>
-                                    
-                                    
-                                        
-                                            
-                                        
+					          		</form>                                        
 					          	</div>
 					        </li>
 					       
-					        <!-- end:contact -->   ";
-    
-    
+					        <!-- end:contact -->   ";   
 }
-
 function bug_report_js()
 {
  
@@ -831,8 +670,6 @@ function clean_youtube_link($youtube) {
     return substr($youtube, 0, strpos($youtube, "list")-1);
   
 }
-
-
 
 function getBusinessThumbnailsAndInfo($dbs, $limit=8, $print=false)
 /*displays the row/rows of thumbnails for businesses on home page or whereever*/{
@@ -920,7 +757,6 @@ function getBusinessThumbnailsAndInfo($dbs, $limit=8, $print=false)
             return $businesses;
         }
 
-
 function getCandidateThumbnailsAndInfo($dbs, $limit=8, $print=false){
 
             $query = "SELECT * FROM users WHERE picture!='' AND account!=1 AND picture!='default/default.jpg' ORDER BY added DESC LIMIT 8";
@@ -1006,8 +842,6 @@ function getCandidateThumbnailsAndInfo($dbs, $limit=8, $print=false){
             return $workers;
         }
 
-
-
 function getProjectThumbnailsAndInfo($dbs, $limit=8, $print=false)
 {
                             
@@ -1089,15 +923,6 @@ function getProjectThumbnailsAndInfo($dbs, $limit=8, $print=false)
             }
         }
 }
-
-
-
-
-
-
-
-
-
 
 function getJobList($dbs, $limit=5, $print=true)                                   
 {
@@ -1182,16 +1007,9 @@ function getJobList($dbs, $limit=5, $print=true)
                     <p>$description</p>
                 </div>
                 ";
-
-
-
-
-
             }
         print "</div>
                                     </li>";
         }//end sizeof
-
-
 }
 ?>    
