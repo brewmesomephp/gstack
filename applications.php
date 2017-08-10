@@ -121,10 +121,10 @@ include_once "functions.php";
                         $message = $row['message'];
                         print "<br><b style='padding-left:20px;'>Cover Letter</b><br>";
                         print "<p style='padding-left:20px;'>$message</p>";
-                        print "<i>[View Application]</i>  [Accept] [Decline]<br />  ";
+                        print "<i>[View Application]</i>  <a href='applications.php?viewapp=$id&a=1' class='accept' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0' class='decline' id='$id'>Decline</a><br />  ";
                     }
                     else{
-                        print "<br /><a href='applications.php?viewapp=$id'>[View Application]</a> [Accept] [Decline]<br />  ";
+//                        print "<br /><a href='applications.php?viewapp=$id'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' class='accept' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0' class='decline' id='$id'>Decline</a><br />  ";
                         
                     }
                     
@@ -184,7 +184,7 @@ include_once "functions.php";
                     
                     
                     print " with the job title <u>$title</u>. 
-                    (<a href='#' class='accept' id='$id'>Accept</a> / <a href='#' class='decline' id='$id'>Decline</a>)</li>";
+                    (<a href='applications.php?viewapp=$id&a=1' class='accept' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0' class='decline' id='$id'>Decline</a>)</li>";
                 }
             }
     print "</ul>";
@@ -194,24 +194,14 @@ include_once "functions.php";
                 $query = "UPDATE show_interest SET viewed='1' WHERE toid='$sess_id'";
                 $sql = $dbs->prepare($query);
                 $sql->execute();
-        
-        
-        
-    
+   
 ?>
 						          	</div>
                                 </div>
-                    
-					        </li>
-
-                    
-            </div>
-        	
+					        </li>    
+            </div>  	
 	</div>
-    
     <div id="game_updates_div" ><p></p></div>
- 
-    
 <!-- start:javascript -->
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
