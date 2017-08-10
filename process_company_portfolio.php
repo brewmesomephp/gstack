@@ -23,9 +23,6 @@ function getContent($sess_id)
     if (isset($_POST['title'])) 
     {
         
-
-        
-        
     
     $target_dir = "upload/";
     $target_file = $target_dir . $_SERVER['REQUEST_TIME'] . "-" . basename($_FILES["fileToUpload"]["name"]);
@@ -75,16 +72,6 @@ function getContent($sess_id)
         $filename = str_replace(" ", "-", $filename);
         $filename = str_replace("_", "-", $filename);
 
-   
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //
         print "<br />";
         

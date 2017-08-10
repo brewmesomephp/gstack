@@ -194,16 +194,10 @@ $(document).ready(function () {
         }
     }
     
-    
-    
-    
-          
-            
+       
  $(document).on("click",".remove",function(e){
  var skill_number = this.id;
-     
-     
-     
+
      window.location='#content_here_please';
      $.ajax({
     		   	type: "GET",
@@ -228,8 +222,6 @@ $(document).ready(function () {
 });
             
     
-
-    
     $( document ).ajaxComplete(function() {
   //$( "#skill_div" ).append( "Triggered ajaxComplete handler." );
     $(document).ready(function() {
@@ -241,11 +233,7 @@ $(document).ready(function () {
 });
         
 });
-    
-    
-    
-    
-    
+
     </script>
     
 <script type="text/javascript" charset="utf-8">

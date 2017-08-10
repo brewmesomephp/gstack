@@ -82,12 +82,10 @@ if (!get_account_type($sess_id))
                                     <form enctype="multipart/form-data" id="myform">    
                                         <input type="text"  class="form-control input-lg" name="title" placeholder="Title..."/> 
                                         <input type="text"  class="form-control input-lg" name="caption" placeholder="Caption..."/> <br />
-                                        <textarea name="description" style="width:300px; height:100px;" placeholder="Description..."/></textarea>
+                                        <textarea name="description" class="form-control input-lg" style="width:100%; height:100px;" placeholder="Description..."/></textarea>
                                         <br>
 
-
-
-
+                                        <input type="text" name="youtube" class="form-control input-lg" placeholder="Youtube URL..."/> 
                                         <input type="file"  class="form-control input-lg" accept="image/*" name="fileToUpload" id="image" /> 
                                         <br>
                                         <input type="button" class="form-control input-lg upload"  value="Upload image" />
