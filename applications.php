@@ -74,12 +74,13 @@ else
 					        </li>
 					        <li>
 					          	<div class="timeline-badge primary"></div>
-					          	<div class="timeline-panel game_updates" id="game_updates">
+					          	<div class="timeline-panel game_updates" id="">
 					          		<h1>Job Applications</h1>
                                     <?php include_once "functions.php"; dashboard_links(); ?>
     
                                     <div class="hr-left"></div>
 						          	<div class="work-experience">
+
 <?php
 include_once "functions.php";
 
@@ -93,6 +94,7 @@ include_once "functions.php";
             foreach($rows as $row)
             {
                 $fromid = $row['userid'];
+                $GLOBALS['fromid'] = $fromid;
                 $from = get_user($fromid);
                 $jobid = $row['jobid'];
                 $id = $row['id'];
@@ -106,9 +108,7 @@ include_once "functions.php";
 //                row in db of job
                 $job = get_job($jobid);
                 $title = $job['title'];
-                
-                
-                
+
                 if ($from['account'] == 0)
                 {
                     
@@ -118,17 +118,57 @@ include_once "functions.php";
                         $query2 = "UPDATE `apply_now` SET `read`='1', `time_read`=CURRENT_TIMESTAMP WHERE `id`='$viewapp' AND `read`='0'";
                         $sql = $dbs->prepare($query2);
                         $sql->execute();
+                        
                         $message = $row['message'];
+//                        display message
+                        
+                        print "<h2>" . $from['name'] . "</h2>";
                         print "<br><b style='padding-left:20px;'>Cover Letter</b><br>";
                         print "<p style='padding-left:20px;'>$message</p>";
-                        print "<i>[View Application]</i>  <a href='applications.php?viewapp=$id&a=1' class='accept' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0' class='decline' id='$id'>Decline</a><br />  ";
+                        print "<a href='applications.php?viewapp=$id&a=1'  id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
+                        
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+//                        There is a problem when sending the message it sends to an empty ID
+                        
+                        
+                        
+                        ?>
+                                                                                                        <div id="game_updates"><p></p></div>
+
+                        <form class='send_msg'>
+                        <div class='row'>
+
+                            <div class='col-md-10'>
+                                <div class='form-group'>
+                                    <textarea class='form-control input-lg' name='message' rows='1' id='message' placeholder='Message...'></textarea>
+                                    <input type='hidden' value='<?=$id?>' id='sendto' name='sendto'>
+                                </div>
+                            </div>
+                            <div class='form-group col-md-2'>
+                            <button class='btn btn-lg btn-primary btn-block btn_msg' type='button' id='<?=$id?>'>SEND</button>
+                        </div>
+                        </div>
+
+                    </form>
+                                        <?php
                     }
                     else{
-//                        print "<br /><a href='applications.php?viewapp=$id'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' class='accept' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0' class='decline' id='$id'>Decline</a><br />  ";
+                        
+                        print "<br /><a href='applications.php?viewapp=$id'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
                         
                     }
-                    
-                    
+
                     print "<br />";
                     
                 }
@@ -140,60 +180,7 @@ include_once "functions.php";
                 }
             }
             
-            print "<h3>Invites</h3>";
-            print "<ul>\n";
-            $query = "SELECT * FROM company_worker_invites WHERE toid='$sess_id' AND viewed='0' ORDER BY viewed ASC";
-            $sql = $dbs->prepare($query);
-            $sql->execute();
-            $rows = $sql->fetchAll();
-            foreach($rows as $row)
-            {
-                $fromid = $row['fromid']; 
-                $from = get_user($fromid);
-                $id = $row['id'];
-                $title = $row['job_title'];
-                $game_ids = $row['games'];
-                $game_ids = explode(",",$game_ids);
-                $game_links = get_games_links_by_array($game_ids);
-                
-                
-                if ($from['account'] == 0)
-                {
-                    
-                }
-                else
-                {
-                    print "<li id='company$id'><a href='php_company.php?id=$fromid'>".$from['company']. "</a> Says you work";
-                    if (sizeof($game_links) > 0)
-                    {
-                        print " on ";
-                        for ($i = 0; $i < sizeof($game_links); $i++)
-                             {
-                                 print $game_links[$i];
-                                if ($i < (sizeof($game_links)-1))
-                                {
-                                    if ($i == (sizeof($game_links) - 2))
-                                    {
-                                        print " and ";
-                                    }
-                                    else
-                                        print ", ";
-                                }
-                             }
-                    }
-                    
-                    
-                    print " with the job title <u>$title</u>. 
-                    (<a href='applications.php?viewapp=$id&a=1' class='accept' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0' class='decline' id='$id'>Decline</a>)</li>";
-                }
-            }
-    print "</ul>";
-                $query = "UPDATE company_worker_invites SET viewed='1' WHERE toid='$sess_id'";
-                $sql = $dbs->prepare($query);
-                $sql->execute();
-                $query = "UPDATE show_interest SET viewed='1' WHERE toid='$sess_id'";
-                $sql = $dbs->prepare($query);
-                $sql->execute();
+
    
 ?>
 						          	</div>
@@ -201,7 +188,6 @@ include_once "functions.php";
 					        </li>    
             </div>  	
 	</div>
-    <div id="game_updates_div" ><p></p></div>
 <!-- start:javascript -->
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -212,49 +198,51 @@ include_once "functions.php";
 	<script src="js/jquery.scrollUp.js"></script>
     <script src="js/jquery.jeditable.js"></script>
 	<script src="js/checkmail.js"></script> <!-- end:javascript -->
-        <script>
+        
+<?php if (isset($_GET['viewapp'])){ 
+                    $contact_id = $GLOBALS['fromid'];?>
+                    
+                            <script>
 
+$(function() {
+//twitter bootstrap script
+	$(document).on("click",".btn_msg",function(e){
 
-                $(document).on("click",".accept",function(e){
- var company_number = this.id;
+        
+    var to_id = this.id;
+    var msg = $('#message').val();
+    var to = $('#sendto').val();
+
      $.ajax({
-    		   	type: "GET",
-			url: "accept_company.php?accept=true",
-			data: 'id=' + company_number,
+    		   	type: "POST",
+			url: "process_message.php", 
+			data: {
+            'to':to,
+            'msg':msg
+            
+            },
         		success: function(msg){
                     
-                        
- 	          		  $("#company"+company_number).html(msg)
+ 	          		  $("#game_updates").html(msg);
+                      $(".send_msg").html("");
+                    //clear form.
+                   
  		        },
 			error: function(){
 				alert("failure");
 				}
       			});
-     
- });
+	});
+});
+
             
-            
-            
-   $(document).on("click",".decline",function(e){
- var company_number = this.id;
-     alert(company_number);
-     $.ajax({
-    		   	type: "GET",
-			url: "accept_company.php?accept=false",
-			data: 'id=' + company_number,
-        		success: function(msg){
-                    
-                        
- 	          		  $("#company"+company_number).html(msg)
- 		        },
-			error: function(){
-				alert("failure");
-				}
-      			});
-     
- });  
-            
+    $(document).ready(function() {
+    $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>&display_contacts=0');
+    return false;
+});
+                 
             
 </script>
+                    <?php } ?>
 </body>
 </html>

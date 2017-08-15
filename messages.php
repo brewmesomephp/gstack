@@ -88,7 +88,25 @@ else
         	
 	</div>
     
-    <div id="game_updates_div" ><p></p></div>
+    <div id="game_updates_div"><p></p></div>
+                    
+                    <?php if (isset($_GET['id'])) { ?>
+                    <form class='send_msg'>
+                        <div class='row'>
+
+                            <div class='col-md-10'>
+                                <div class='form-group'>
+                                    <textarea class='form-control input-lg' name='message' rows='1' id='message' placeholder='Message...'></textarea>
+                                    <input type='hidden' value='<?=$_GET['id']?>' id='sendto' name='sendto'>
+                                </div>
+                            </div>
+                            <div class='form-group col-md-2'>
+                            <button class='btn btn-lg btn-primary btn-block btn_msg' type='button' id='<?=$_GET['id']?>'>SEND</button>
+                        </div>
+                        </div>
+
+                    </form>
+                    <?php } ?>
  
     
 <!-- start:javascript -->
@@ -106,14 +124,7 @@ else
 $(function() {
 //twitter bootstrap script
 	$(document).on("click",".btn_msg",function(e){
-        
-        
-        
-        
-        
-        
-        
-        
+
         
     var to_id = this.id;
     var msg = $('#message').val();
@@ -140,24 +151,13 @@ $(function() {
       			});
 	});
 });
- 
-            
-            
-            
-            
-            
-         
-            
-    $(document).ready(function() {
-    $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>');
-    return false;
-});
-             
-            
 
             
-            
-            
+    $(document).ready(function() {
+    $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>&display_contacts=1');
+    return false;
+});
+                 
             
 </script>
 </body>

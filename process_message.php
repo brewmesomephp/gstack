@@ -28,6 +28,7 @@ print "
         
         $message= strip_tags($_POST['message']);
         $message = addslashes($message);
+     
         $fromid = $_SESSION['id'];
         $toid = $_GET['id'];
         
@@ -154,20 +155,20 @@ if (isset($_POST['to']))
             
             
         }
-        print "
-                    <div class='row'>
-
-                        <div class='col-md-10'>
-                            <div class='form-group'>
-                                <textarea class='form-control input-lg' name='message' rows='1' id='message' placeholder='Message...'></textarea>
-                                <input type='hidden' value='$to' id='sendto' name='sendto'>
-                            </div>
-                        </div>
-                        <div class='form-group col-md-2'>
-                        <button class='btn btn-lg btn-primary btn-block btn_msg' type='button' id='$to'>SEND</button>
-                    </div>
-                    </div>
-                    ";
+//        print "
+//                    <div class='row'>
+//
+//                        <div class='col-md-10'>
+//                            <div class='form-group'>
+//                                <textarea class='form-control input-lg' name='message' rows='1' id='message' placeholder='Message...'></textarea>
+//                                <input type='hidden' value='$to' id='sendto' name='sendto'>
+//                            </div>
+//                        </div>
+//                        <div class='form-group col-md-2'>
+//                        <button class='btn btn-lg btn-primary btn-block btn_msg' type='button' id='$to'>SEND</button>
+//                    </div>
+//                    </div>
+//                    ";
     
     
         $query = "SELECT * FROM messages WHERE toid='$sess_id' OR fromid='$sess_id' ORDER BY opened ASC, added DESC";
@@ -287,6 +288,7 @@ if (isset($_POST['to']))
                 }
             }
         }
+    print "<h1>FUCK U</h1>";
 }
 
 

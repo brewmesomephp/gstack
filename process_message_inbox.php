@@ -8,7 +8,7 @@ $sess_id = $_SESSION['id'];
 
 
 
-function getContent($sess_id) 
+function getContent($sess_id, $display_contacts=1) 
 {
     print "
         <h1>Messages</h1>";
@@ -66,7 +66,7 @@ function getContent($sess_id)
 
 
             }
-            print "<form class='send_msg'>
+/*                  print "<form class='send_msg'>
                         <div class='row'>
 
                             <div class='col-md-10'>
@@ -80,14 +80,15 @@ function getContent($sess_id)
                         </div>
                         </div>
 
-                    </form>";
+                   </form>";
+*/
         }
     }
     
     
     
     
-    
+    if ($display_contacts == 1)    {
         
         $query = "SELECT * FROM messages WHERE toid='$sess_id' OR fromid='$sess_id' ORDER BY opened ASC, added DESC ";
         $sql = $dbs->prepare($query);
@@ -193,11 +194,25 @@ function getContent($sess_id)
             }
         
         }
-
+    }
 }
 
     //get the data
-    $data = getContent($sess_id);
+if (!isset($_GET['display_contacts'])){
+    $data = getContent($sess_id, 1);
+    
+}   
+else
+{
+    if ($_GET['display_contacts'] == 1)
+    {
+        $data = getContent($sess_id, 1);
+    }
+    else{
+        $data = getContent($sess_id, 0);
+    }
+    
+}
     
 
 
