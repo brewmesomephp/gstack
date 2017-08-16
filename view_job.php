@@ -92,6 +92,8 @@ else{
     }
 
 include_once "functions.php";
+
+
 if (isset($_GET['jobid']))
 {
     $jobid = $_GET['jobid'];
@@ -101,14 +103,24 @@ if (isset($_GET['jobid']))
     $company_name = $company['name'];
     print "<h2><a href='php_company.php?id={$company['id']}'>$company_name</a></h2>";
     
+    //Gets the cover letter, strips it of malicious code, inserts into application db and message db
     if (isset($_GET['apply'])){
         if (isset($_POST['cover']) && $loggedin){
-                $cover = $_POST['cover'];
-                $dbs = db_connection();
-                $cover= addslashes(strip_tags($_POST['cover'])); 
-                $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
-                $sql = $dbs->prepare($query);
-                $sql->execute();
+            
+            $cover = $_POST['cover'];
+            $dbs = db_connection();
+            $cover= addslashes(strip_tags($_POST['cover'])); 
+
+            //adds application
+            $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
+            $sql = $dbs->prepare($query);
+            $sql->execute();
+            
+            
+            //            Adds as a message to the database
+            $query2 = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$userid', '$companyid', '$cover', CURRENT_TIMESTAMP, '$jobid')";
+            $sql = $dbs->prepare($query);
+            $sql->execute();
             
 //            Now add a client side (company respond to the application) 8/3/17
             

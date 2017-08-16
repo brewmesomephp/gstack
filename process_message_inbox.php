@@ -10,10 +10,12 @@ $sess_id = $_SESSION['id'];
 
 function getContent($sess_id, $display_contacts=1) 
 {
+    if ((!isset($_GET['display_header'])) || $_GET['display_header'] == 1){
     print "
         <h1>Messages</h1>";
         include_once "functions.php"; dashboard_links(); 
     print "<div class='hr-left'></div>";
+    }
     include_once "functions.php";
     $dbs = db_connection();
         
@@ -22,8 +24,16 @@ function getContent($sess_id, $display_contacts=1)
     {
         if ($_GET['id'] != -1)
         {
+            $additional_query = "";
+            //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
+            if (isset($_GET['app']))
+                {
+                    $app = $_GET['app'];
+                    $additional_query = " AND jobid='$app' ";
+                    
+                }
             $contact_id = $_GET['id'];
-            $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') ORDER BY opened ASC, added DESC ";
+            $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') $additional_query ORDER BY opened ASC, added DESC ";
             $sql = $dbs->prepare($query);
             $sql->execute();
             $contacts = $sql->fetchAll();

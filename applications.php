@@ -125,22 +125,7 @@ include_once "functions.php";
                         print "<h2>" . $from['name'] . "</h2>";
                         print "<br><b style='padding-left:20px;'>Cover Letter</b><br>";
                         print "<p style='padding-left:20px;'>$message</p>";
-                        print "<a href='applications.php?viewapp=$id&a=1'  id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
-                        
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-//                        There is a problem when sending the message it sends to an empty ID
-                        
+                        print "<a href='applications.php?viewapp=$id&a=1&fromid=$fromid'  id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0&fromid=$fromid'  id='$id'>Decline</a><br />  ";                   
                         
                         
                         ?>
@@ -152,11 +137,11 @@ include_once "functions.php";
                             <div class='col-md-10'>
                                 <div class='form-group'>
                                     <textarea class='form-control input-lg' name='message' rows='1' id='message' placeholder='Message...'></textarea>
-                                    <input type='hidden' value='<?=$id?>' id='sendto' name='sendto'>
+                                    <input type='hidden' value='<?=$fromid?>' id='sendto' name='sendto'>
                                 </div>
                             </div>
                             <div class='form-group col-md-2'>
-                            <button class='btn btn-lg btn-primary btn-block btn_msg' type='button' id='<?=$id?>'>SEND</button>
+                            <button class='btn btn-lg btn-primary btn-block btn_msg' type='button' id='<?=$fromid?>'>SEND</button>
                         </div>
                         </div>
 
@@ -165,7 +150,7 @@ include_once "functions.php";
                     }
                     else{
                         
-                        print "<br /><a href='applications.php?viewapp=$id'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
+                        print "<br /><a href='applications.php?viewapp=$id&fromid=$fromid'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
                         
                     }
 
@@ -200,7 +185,9 @@ include_once "functions.php";
 	<script src="js/checkmail.js"></script> <!-- end:javascript -->
         
 <?php if (isset($_GET['viewapp'])){ 
-                    $contact_id = $GLOBALS['fromid'];?>
+                    $contact_id = $_GET['fromid'];
+                    $app = $_GET['viewapp'];
+                    ?>
                     
                             <script>
 
@@ -215,9 +202,9 @@ $(function() {
 
      $.ajax({
     		   	type: "POST",
-			url: "process_message.php", 
+			url: "process_message.php?display_contacts=0&display_header=0&app=<?=$app?>", 
 			data: {
-            'to':to,
+            'to':<?=$contact_id?>,
             'msg':msg
             
             },
@@ -237,7 +224,7 @@ $(function() {
 
             
     $(document).ready(function() {
-    $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>&display_contacts=0');
+    $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>&display_contacts=0&display_header=0&app=<?=$app?>');
     return false;
 });
                  

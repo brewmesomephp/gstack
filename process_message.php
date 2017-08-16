@@ -12,11 +12,13 @@ function getContent($sess_id)
 {
     
 }
-       
+
+if ((!isset($_GET['display_header'])) || $_GET['display_header'] == 1){
 print "
         <h1>Messages</h1>";
         include_once "functions.php"; dashboard_links(); 
     print "<div class='hr-left'></div>";
+}
  if (isset($_POST['message'])) 
     {
       include_once "functions.php";
@@ -33,8 +35,19 @@ print "
         $toid = $_GET['id'];
         
         
-        
-        $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";
+            $jobapp = "";
+                //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
+                if (isset($_GET['app']))
+                    {
+                        $app = $_GET['app'];
+                        $jobid = " AND jobid='$app' ";
+                        $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
+                    }
+                else{
+
+                    $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";
+                    
+                }
         $sql = $dbs->prepare($query);
         $sql->execute();
      
@@ -81,7 +94,24 @@ if (isset($_POST['to']))
         
         $fromid = $_SESSION['id'];
         $toid = $_POST['to'];
-        $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";
+        
+        
+        
+        
+                //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
+        if (isset($_GET['app']))
+            {
+                $app = $_GET['app'];
+                $jobid = " AND jobid='$app' ";
+                $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
+            }
+        else{
+
+            $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";
+
+        }
+        
+        
         $sql = $dbs->prepare($query);
         $sql->execute();
         include_once "functions.php";
@@ -109,8 +139,16 @@ if (isset($_POST['to']))
         }
         
     }
+            $additional_query = "";
+            //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
+            if (isset($_GET['app']))
+                {
+                    $app = $_GET['app'];
+                    $additional_query = " AND jobid='$app' ";
+                    
+                }
     
-        $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') ORDER BY opened ASC, added DESC LIMIT 15";
+        $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') $additional_query ORDER BY opened ASC, added DESC LIMIT 15";
         $sql = $dbs->prepare($query);
         $sql->execute();
         $contacts = $sql->fetchAll();
@@ -230,6 +268,9 @@ if (isset($_POST['to']))
     }
         include_once "functions.php";
     $dbs = db_connection();
+    
+if ((!isset($_GET['display_contacts'])) || $_GET['display_contacts'] == 1){
+
     $contact = array_unique($contact);
     $contact = array_values($contact);
     if (sizeof($contact) > 0)
@@ -288,7 +329,8 @@ if (isset($_POST['to']))
                 }
             }
         }
-    print "<h1>FUCK U</h1>";
+    }
+
 }
 
 
