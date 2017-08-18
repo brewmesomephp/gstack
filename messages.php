@@ -60,40 +60,27 @@ else
     <!-- model content -->	
 	
 		<div class="main-content">
-				        	 
-				
-                
                 <ul class="timeline"  style="background-color:#fff;">
                     <?php include_once "check_percentage.php"; ?>
-                          
-            	
                 <!-- start:game_updates -->
-					        <li id="id-resume">
-                                <form class="col-lg-12 game_updates" style="float:left;">  
-                                
-					        </li>
-					        <li>
-					          	<div class="timeline-badge primary"></div>
-					          	<div class="timeline-panel game_updates" id="game_updates">
-					          		<h1>Messages</h1>
-                                    <?php include_once "functions.php"; dashboard_links(); ?>
-    
-                                    
-                                </div>
-                    
-					        </li>
-
-                    
+                        <li id="id-resume">
+                            <form class="col-lg-12 game_updates" style="float:left;">  
+                        </li>
+                        <li>
+                            <div class="timeline-badge primary"></div>
+                            <div class="timeline-panel game_updates" id="game_updates">
+                                <h1>Messages</h1>
+                                <?php include_once "functions.php"; dashboard_links(); ?>
+                            </div>
+                        </li>
             </div>
         	
 	</div>
     
     <div id="game_updates_div"><p></p></div>
-                    
                     <?php if (isset($_GET['id'])) { ?>
                     <form class='send_msg'>
                         <div class='row'>
-
                             <div class='col-md-10'>
                                 <div class='form-group'>
                                     <textarea class='form-control input-lg' name='message' rows='1' id='message' placeholder='Message...'></textarea>
@@ -125,25 +112,21 @@ $(function() {
 //twitter bootstrap script
 	$(document).on("click",".btn_msg",function(e){
 
-        
     var to_id = this.id;
     var msg = $('#message').val();
     var to = $('#sendto').val();
 
      $.ajax({
-    		   	type: "POST",
+            type: "POST",
 			url: "process_message.php", 
 			data: {
             'to':to,
             'msg':msg
-            
             },
         		success: function(msg){
-                    
  	          		  $("#game_updates").html(msg);
                       $(".send_msg").html("");
                     //clear form.
-                   
  		        },
 			error: function(){
 				alert("failure");
@@ -151,7 +134,6 @@ $(function() {
       			});
 	});
 });
-
             
     $(document).ready(function() {
     $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>&display_contacts=1');

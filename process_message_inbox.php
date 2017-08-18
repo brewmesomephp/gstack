@@ -7,7 +7,6 @@ if (!isset($_SESSION['id']))
 $sess_id = $_SESSION['id'];
 
 
-
 function getContent($sess_id, $display_contacts=1) 
 {
     if ((!isset($_GET['display_header'])) || $_GET['display_header'] == 1){
@@ -27,11 +26,12 @@ function getContent($sess_id, $display_contacts=1)
             $additional_query = "";
             //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
             if (isset($_GET['app']))
-                {
-                    $app = $_GET['app'];
-                    $additional_query = " AND jobid='$app' ";
+            {
+                $app = $_GET['app'];
+                $additional_query = " AND jobid='$app' ";
+                print "getting where jobid = $app";
                     
-                }
+            }
             $contact_id = $_GET['id'];
             $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') $additional_query ORDER BY opened ASC, added DESC ";
             $sql = $dbs->prepare($query);
@@ -41,6 +41,14 @@ function getContent($sess_id, $display_contacts=1)
             foreach($contacts as $contact)
             {
                 $from_id = $contact['fromid'];
+                
+                //if this is a message regarding a job, provides a notification stating so. then links them to the app to respond.
+                $jobid = $contact['jobid'];
+                if ($jobid != 0)
+                {
+                    //append a message to the username stating that they will have to go to the application page to respond
+                }
+                
                 $q = "SELECT * FROM users WHERE id='$from_id'";
                 $sql = $dbs->prepare($q);
                 $sql->execute();
@@ -63,6 +71,10 @@ function getContent($sess_id, $display_contacts=1)
                     else
                     {
                         $name = $user['first_name'] . " " . $user['last_name'];
+                    }
+                    if ($contact['jobid'] != 0){
+                        $app = $contact['jobid'];
+                        print "<a href='applications.php?viewapp=$app'>[JOB APPLICATION RESPONSE]</a>";
                     }
                     print $name . ": " . $contact['message'] . "<br />";
 

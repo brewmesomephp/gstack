@@ -132,9 +132,7 @@ function db_connection()
 function get_user_by_email($email) //return a variable with most of the db info
 {
     $id = $email;
-
-    $dbs = db_connection();        
-    
+    $dbs = db_connection();
     $user;
     //add a new item to DB
         
@@ -1012,4 +1010,15 @@ function getJobList($dbs, $limit=5, $print=true)
                                     </li>";
         }//end sizeof
 }
+
+
+
+function getJobByApp($app){
+    $query = "SELECT * FROM jobs WHERE id='$app'";
+    $sql = $dbs->prepare($query);
+    $sql->execute();
+    $job = $sql->fetchAll();
+    return $job;
+}
+
 ?>    

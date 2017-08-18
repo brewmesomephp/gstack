@@ -9,7 +9,7 @@ $sess_id = $_SESSION['id'];
 
 
 function getContent($sess_id) 
-{
+{ 
     
 }
 
@@ -37,17 +37,20 @@ print "
         
             $jobapp = "";
                 //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
-                if (isset($_GET['app']))
-                    {
-                        $app = $_GET['app'];
-                        $jobid = " AND jobid='$app' ";
-                        $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
-                    }
-                else{
+     //yet apparently nothing does anything because neither of the Printing inside... prints
+            if (isset($_GET['app']))
+            {
+                $app = $_GET['app'];
+                $jobid = " AND jobid='$app' ";
+                $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
+//                print "Printing inside isset _GET app";
+            }
+            else{
+                $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";   
+//                print "Printing NOT inside isset _GET app";
 
-                    $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";
-                    
-                }
+            }
+     print "it seems nothing is printing.";
         $sql = $dbs->prepare($query);
         $sql->execute();
      
@@ -104,10 +107,14 @@ if (isset($_POST['to']))
                 $app = $_GET['app'];
                 $jobid = " AND jobid='$app' ";
                 $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
+//                print "Printing inside isset _GET app";
+
             }
         else{
 
             $query = "INSERT INTO messages (fromid, toid, message, added) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP)";
+//            print "Printing inside isset _GET app";
+
 
         }
         
@@ -131,24 +138,28 @@ if (isset($_POST['to']))
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             
             include_once "email/messages/message_user.php";
-        
-            ob_start();
-            send_mail();
-            $msg = ob_get_clean();
-            mail($to, $subject, $msg, $headers);
+//        To send the message out, uncomment out the next 4 lines
+//            ob_start();
+//            send_mail();
+//            $msg = ob_get_clean();
+//            mail($to, $subject, $msg, $headers);
         }
         
     }
             $additional_query = "";
             //the following is for job applications. the additional query will poll the DB for if and only if the messages are labeled within the job application title.
-            if (isset($_GET['app']))
-                {
-                    $app = $_GET['app'];
-                    $additional_query = " AND jobid='$app' ";
-                    
-                }
+    if (isset($_GET['app']))
+    {
+        $app = $_GET['app'];
+        $additional_query = " AND jobid='$app' ";
+
+    }
+    else{
+        $app = 0;
+    }
     
         $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') $additional_query ORDER BY opened ASC, added DESC LIMIT 15";
+    print "<br /> Total Query: $query <br />";
         $sql = $dbs->prepare($query);
         $sql->execute();
         $contacts = $sql->fetchAll();
@@ -180,7 +191,18 @@ if (isset($_POST['to']))
                 {
                     $name = $user['first_name'] . " " . $user['last_name'];
                 }
-                print $name . ": " . stripslashes($contact['message']) . "<br />"; 
+//                replace the message with an alert to go to the applications.php page to view the job related message if it is an application message
+                if ($app){
+                    if (get_referrer() == "messages"){
+                        $name.=": [Job Application Message] Please view this message <a href='applications.php?viewapp=$app'>here</a>";
+                    }
+                    else{
+                        print $name . ": " . stripslashes($contact['message']) . "<br />"; 
+                    }
+                }
+                else{
+                    print $name . ": " . stripslashes($contact['message']) . "<br />"; 
+                }
                 
             }
             
@@ -190,9 +212,9 @@ if (isset($_POST['to']))
             }
             else
                 $to = $contact['toid'];
-            
-            
         }
+            
+            print "END 217";
 //        print "
 //                    <div class='row'>
 //

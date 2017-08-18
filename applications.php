@@ -84,13 +84,28 @@ else
 <?php
 include_once "functions.php";
 
-        
+    
     //add a new item to DB
             print "<h3>Recent Applications</h3>";
-            $query = "SELECT * FROM `apply_now` WHERE `companyid`='$sess_id' ORDER BY `time_applied` DESC";
+            $user = get_user($sess_id);
+
+
+
+            //If the person is a Candidate, query for all of those applications. 
+            if ($user['account'] == 0){
+                $query = "SELECT * FROM `apply_now` WHERE `userid`='$sess_id' ORDER BY `time_applied` DESC";
+            }
+            //If this is a Company, query for all of those applications.
+            else{
+                $query = "SELECT * FROM `apply_now` WHERE `companyid`='$sess_id' ORDER BY `time_applied` DESC";
+            }
+
+
             $sql = $dbs->prepare($query);
             $sql->execute();
             $rows = $sql->fetchAll();
+
+            //display the apps now
             foreach($rows as $row)
             {
                 $fromid = $row['userid'];
@@ -103,15 +118,17 @@ include_once "functions.php";
                 $time_read = $row['time_read'];
                 $time_responded = $row['time_responded'];
                 
-                 
+                
                 
 //                row in db of job
                 $job = get_job($jobid);
                 $title = $job['title'];
-
+                
+                
+                //if the job application is from a USER not a company [tbh i dont know why this is here cuz they all are from users]
                 if ($from['account'] == 0)
                 {
-                    
+                    //display the link to view the app 
                     print "<b><a href='php_profile.php?id=$fromid'>".$from['name']. "</a></b> applied for <b><a href='view_job.php?jobid=$jobid'>$title</a></b>";
                     if (isset($_GET['viewapp']) && $id == $_GET['viewapp']){
                         $viewapp = $_GET['viewapp'];
@@ -185,9 +202,44 @@ include_once "functions.php";
 	<script src="js/checkmail.js"></script> <!-- end:javascript -->
         
 <?php if (isset($_GET['viewapp'])){ 
-                    $contact_id = $_GET['fromid'];
-                    $app = $_GET['viewapp'];
-                    ?>
+       $sess_id = $_SESSION['id'];
+       
+       $app = $_GET['viewapp'];
+        $contact_id = $_GET['fromid'];
+        $user = get_user($_SESSION['id']);
+       //shape this code up asap... im brain dead right now and i know its sloppy. im surprised i can think
+       if ($user['account'] == 0){
+                $query = "SELECT * FROM `apply_now` WHERE `userid`='$sess_id' AND `id`='$app'  ORDER BY `time_applied` DESC";
+                $sql = $dbs->prepare($query);
+                $sql->execute();
+                $rows = $sql->fetchAll();
+                foreach ($rows as $row)
+                    $contact_id = $row['companyid'];
+            }
+            //If this is a Company, query for all of those applications.
+            else{
+                $query = "SELECT * FROM `apply_now` WHERE `companyid`='$sess_id' AND `id`='$app' ORDER BY `time_applied` DESC";
+                $sql = $dbs->prepare($query);
+                $sql->execute();
+                $rows = $sql->fetchAll();
+                foreach ($rows as $row)
+                    $contact_id = $row['userid'];
+            }
+
+        $app = $_GET['viewapp'];
+       
+       
+             
+       
+       
+
+       
+       
+       
+       
+       
+       
+        ?>
                     
                             <script>
 
