@@ -16,6 +16,7 @@ function getContent($sess_id, $display_contacts=1)
     print "<div class='hr-left'></div>";
     }
     include_once "functions.php";
+    print get_referrer();
     $dbs = db_connection();
         
     
@@ -28,7 +29,7 @@ function getContent($sess_id, $display_contacts=1)
             if (isset($_GET['app']))
             {
                 $app = $_GET['app'];
-                $additional_query = " AND jobid='$app' ";
+                $additional_query = " AND appid='$app' ";
                 print "getting where jobid = $app";
                     
             }
@@ -43,8 +44,8 @@ function getContent($sess_id, $display_contacts=1)
                 $from_id = $contact['fromid'];
                 
                 //if this is a message regarding a job, provides a notification stating so. then links them to the app to respond.
-                $jobid = $contact['jobid'];
-                if ($jobid != 0)
+                $appid = $contact['appid'];
+                if ($appid != 0)
                 {
                     //append a message to the username stating that they will have to go to the application page to respond
                 }
@@ -58,7 +59,15 @@ function getContent($sess_id, $display_contacts=1)
                     if ($contact['toid'] == $sess_id)
                     {
                         //
-                        $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id'";
+                        if (get_referrer() == "applications"){
+                        $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id' AND appid='$app'";
+                        }
+                        elseif(get_referrer() == "messages"){
+                            $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id' AND appid='0'";
+                        }
+                        else{
+                            $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id'";
+                        }
                         $sql = $dbs->prepare($q);
                         $sql->execute();
 
@@ -72,11 +81,19 @@ function getContent($sess_id, $display_contacts=1)
                     {
                         $name = $user['first_name'] . " " . $user['last_name'];
                     }
-                    if ($contact['jobid'] != 0){
-                        $app = $contact['jobid'];
-                        print "<a href='applications.php?viewapp=$app'>[JOB APPLICATION RESPONSE]</a>";
+                    if ($contact['appid'] != 0){
+                        $app = $contact['appid'];
+                        if (get_referrer() == "messages"){
+                            print "<a href='applications.php?viewapp=$app'>[Job Application Message] appid=$app</a> <br />";
+                        }
+                        else{
+                            print $name . ": " . $contact['message'] . "<br />";
+
+                        }
                     }
-                    print $name . ": " . $contact['message'] . "<br />";
+                    else{
+                        print $name . ": " . $contact['message'] . "<br />";
+                    }
 
                 }
                 if ($contact['fromid'] != $_SESSION['id'])
@@ -127,6 +144,7 @@ function getContent($sess_id, $display_contacts=1)
         $id = $row['id'];
         $fromid = $row['fromid'];
         $toid=$row['toid'];
+        $appid = $row['appid'];
         
         
         
@@ -207,7 +225,7 @@ function getContent($sess_id, $display_contacts=1)
                 {
                     $name = $user['first_name'] . " " . $user['last_name'];
                 }
-                if ($unread == true)
+                if ($unread == true && $appid)
                 {
                     print "<b><a href='messages.php?id={$contact[$x]}'>" . $name . "</a> UNREAD </b> <br />";
                 }

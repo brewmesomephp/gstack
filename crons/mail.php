@@ -3,7 +3,7 @@ include "../functions.php";
 $dbs = db_connection();
 
 //get all unread mail
-$query = "SELECT * FROM messages WHERE opened='0'";
+$query = "SELECT * FROM messages WHERE opened='0' AND jobid='0'";
 $sql = $dbs->prepare($query);
 $sql->execute();
 $unreadMail = $sql->fetchAll();

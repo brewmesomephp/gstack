@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['id']))
 {
-    $query = "SELECT * FROM messages WHERE toid='{$_SESSION['id']}' AND opened='0' ORDER BY added ASC";
+    $query = "SELECT * FROM messages WHERE toid='{$_SESSION['id']}' AND opened='0' AND appid='0' ORDER BY added ASC";
     include_once "functions.php";
     $dbs = db_connection();
     

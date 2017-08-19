@@ -41,8 +41,8 @@ print "
             if (isset($_GET['app']))
             {
                 $app = $_GET['app'];
-                $jobid = " AND jobid='$app' ";
-                $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
+                $appid = " AND appid='$app' ";
+                $query = "INSERT INTO messages (fromid, toid, message, added, appid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
 //                print "Printing inside isset _GET app";
             }
             else{
@@ -105,8 +105,8 @@ if (isset($_POST['to']))
         if (isset($_GET['app']))
             {
                 $app = $_GET['app'];
-                $jobid = " AND jobid='$app' ";
-                $query = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
+                $appid = " AND appid='$app' ";
+                $query = "INSERT INTO messages (fromid, toid, message, added, appid) VALUES ('$fromid', '$toid', '$message', CURRENT_TIMESTAMP, '$app')";
 //                print "Printing inside isset _GET app";
 
             }
@@ -151,7 +151,7 @@ if (isset($_POST['to']))
     if (isset($_GET['app']))
     {
         $app = $_GET['app'];
-        $additional_query = " AND jobid='$app' ";
+        $additional_query = " AND appid='$app' ";
 
     }
     else{
@@ -159,7 +159,7 @@ if (isset($_POST['to']))
     }
     
         $query = "SELECT * FROM messages WHERE (toid='$sess_id' OR fromid='$sess_id') AND (toid='$contact_id' OR fromid='$contact_id') $additional_query ORDER BY opened ASC, added DESC LIMIT 15";
-    print "<br /> Total Query: $query <br />";
+//    print "<br /> Total Query: $query <br />";
         $sql = $dbs->prepare($query);
         $sql->execute();
         $contacts = $sql->fetchAll();
@@ -176,8 +176,15 @@ if (isset($_POST['to']))
             {
                 if ($contact['toid'] == $sess_id)
                 {
-                    //
-                    $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id'";
+                    if (get_referrer() == "applications"){
+                        $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id' AND appid='$app'";
+                    }
+                    elseif(get_referrer() == "messages"){
+                        $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id' AND appid='0'";
+                    }
+                    else{
+                        $q = "UPDATE messages SET opened='1' WHERE fromid='{$contact['fromid']}' AND toid='$sess_id'";
+                    }
                     $sql = $dbs->prepare($q);
                     $sql->execute();
                     
@@ -214,7 +221,6 @@ if (isset($_POST['to']))
                 $to = $contact['toid'];
         }
             
-            print "END 217";
 //        print "
 //                    <div class='row'>
 //

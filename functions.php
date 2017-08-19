@@ -522,7 +522,7 @@ function num_new_mail($id)
     $dbs = db_connection();
     $new = 0;
     //get number of unread messages
-    $query = "SELECT * FROM messages WHERE opened='0' AND toid='$id'";
+    $query = "SELECT * FROM messages WHERE opened='0' AND toid='$id' AND appid='0'";
     $sql = $dbs->prepare($query);
     $sql->execute();
     $results = $sql->fetchAll();
@@ -533,14 +533,22 @@ function num_new_mail($id)
 function get_num_new_applications($id)
 {
     $id = $_SESSION['id'];
+    $account = get_account_type($_SESSION['id']);
     $dbs = db_connection();
     $new = 0;
-    //get number of unread messages
+    //get number of unread messages with a jobid
     $query = "SELECT * FROM `apply_now` WHERE `read` = '0' AND `companyid` = '$id'";
     $sql = $dbs->prepare($query);
     $sql->execute();
     $results = $sql->fetchAll();
-    $new += sizeof($results);
+    
+    $msg_query = "SELECT * FROM `messages` WHERE `opened` = '0' AND `toid`='$id' AND `appid` != '0';";
+    $sql = $dbs->prepare($msg_query);
+    $sql->execute();
+    $results2 = $sql->fetchAll();
+    
+    
+    $new += sizeof($results) + sizeof($results2);
     return $new;
 }
 
@@ -1020,5 +1028,20 @@ function getJobByApp($app){
     $job = $sql->fetchAll();
     return $job;
 }
+
+
+function get_referrer()
+    {
+        $ref = $_SERVER['HTTP_REFERER'];
+        
+        $msg = strpos($_SERVER['HTTP_REFERER'], "/messages.php");
+        $app = strpos($_SERVER['HTTP_REFERER'], "/applications.php");
+        if ($msg > $app){
+            return "messages";
+        }
+        else{
+            return "applications";
+        }
+    }
 
 ?>    
