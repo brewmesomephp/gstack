@@ -16,7 +16,6 @@ function getContent($sess_id, $display_contacts=1)
     print "<div class='hr-left'></div>";
     }
     include_once "functions.php";
-    print get_referrer();
     $dbs = db_connection();
         
     
@@ -30,7 +29,7 @@ function getContent($sess_id, $display_contacts=1)
             {
                 $app = $_GET['app'];
                 $additional_query = " AND appid='$app' ";
-                print "getting where jobid = $app";
+//                print "getting where jobid = $app";
                     
             }
             $contact_id = $_GET['id'];

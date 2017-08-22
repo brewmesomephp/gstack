@@ -110,17 +110,27 @@ if (isset($_GET['jobid']))
             $cover = $_POST['cover'];
             $dbs = db_connection();
             $cover= addslashes(strip_tags($_POST['cover'])); 
+            
+            $sess_id = $_SESSION['id'];
+            $query = "SELECT * FROM `apply_now` WHERE jobid='$jobid' AND userid='$sess_id'";
+            $sql = $dbs->prepare($query);
+            $sql->execute();
+            $applied = $sql->fetch();
+            if (!$applied){
+                //adds application
+                $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
+                $sql = $dbs->prepare($query);
+                $sql->execute();
 
-            //adds application
-            $query = "INSERT INTO apply_now (userid, jobid, message, time_applied, companyid) VALUES('$userid', '$jobid', '$cover', CURRENT_TIMESTAMP, '$companyid')";
-            $sql = $dbs->prepare($query);
-            $sql->execute();
+
+                //            Adds as a message to the database
+                $query2 = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$userid', '$companyid', '$cover', CURRENT_TIMESTAMP, '$jobid')";
+                $sql = $dbs->prepare($query2);
+                $sql->execute();
+                
+            }
             
-            
-            //            Adds as a message to the database
-            $query2 = "INSERT INTO messages (fromid, toid, message, added, jobid) VALUES ('$userid', '$companyid', '$cover', CURRENT_TIMESTAMP, '$jobid')";
-            $sql = $dbs->prepare($query);
-            $sql->execute();
+
             
 //            Now add a client side (company respond to the application) 8/3/17
             

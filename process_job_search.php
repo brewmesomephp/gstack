@@ -171,23 +171,27 @@ $zip = "";
             $permanent = "Temporary Position";
         }
         
-        //print "$compensation, $title, $location, $remote, $description, $start_month, $start_year, $end_month, $end_year, $volunteer";
-        /*print "
-        <div class='hr-left'></div>
-            <div class='work-experience'>
-                <h3>$title: $compensation (<a class='remove' id='$id' href='#'>X</a>)</h3>
-                <small><i class='fa fa-calendar'></i> $start_month/$start_year - $volunteer, $location $remote</small>
-                <p>$description</p>
-            </div>";*/
+        $query = "SELECT * FROM `apply_now` WHERE jobid='$id' AND userid='$sess_id'";
+        $sql = $dbs->prepare($query);
+        $sql->execute();
+        $applied = $sql->fetch();
+        if ($applied){
+            $inquire_now = "[Application Sent]";
+        }
+        else
+            $inquire_now = "";
+        
+        
+        
         print "
         <hr>
         <div class='work-experience'>
-            <h3><a href='php_company.php?id=$userid'>$title</a></h3>
+            <h3><a href='view_job.php?jobid=$id'>$title</a> $inquire_now</h3>
             <h4>Location: $location</h4>
             <h5>$compensation</h5>
             <small><i class='fa fa-calendar'></i>Start Date: $start_month/$start_day/$start_year</small>
             <p>$description</p>
-            <p><a href='php_company.php?id=$userid'>Inquire Now</a></p>
+            <p><a href='php_company.php?id=$userid'>Visit Company Page</a></p>
         </div>
         ";
   

@@ -139,10 +139,10 @@ include_once "functions.php";
                         $message = $row['message'];
 //                        display message
                         
-                        print "<h2>" . $from['name'] . "</h2>";
+                        print "<h2>" . $from['name'] . " &#8212; $title</h2>";
                         print "<br><b style='padding-left:20px;'>Cover Letter</b><br>";
                         print "<p style='padding-left:20px;'>$message</p>";
-                        print "<a href='applications.php?viewapp=$id&a=1&fromid=$fromid'  id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0&fromid=$fromid'  id='$id'>Decline</a><br />  ";                   
+                        print "<u><a href='applications.php?viewapp=$id&a=1&fromid=$fromid' id='$id'>Accept</a></u> / <u><a href='applications.php?viewapp=$id&a=0&fromid=$fromid'  id='$id'>Decline</a></u><br />  ";                   
                         
                         
                         ?>

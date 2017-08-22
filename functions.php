@@ -238,14 +238,27 @@ function print_job($job, $apply=0) //prints the job by id
         print "<p style='color:green;'>Application Sent</p>";
     }
     else{
-        if (!empty($_SESSION['id']))
-            {
+        if (!empty($_SESSION['id'])){
+            
+//            if they have already applied, do not let them apply again, obviously.
+            $dbs = db_connection();
+            $sess_id = $_SESSION['id'];
+            $query = "SELECT * FROM `apply_now` WHERE jobid='$id' AND userid='$sess_id'";
+            $sql = $dbs->prepare($query);
+            $sql->execute();
+            $applied = $sql->fetch();
+            if ($applied){
+                print "You've already applied.";
+            }
+            else{
+            
                 print "
                     <form action='view_job.php?jobid=$id&apply=1' method='post'>
                     Cover Letter (recommended): <textarea name='cover' class='form-control input-lg' name='message' rows='12' placeholder='Dear...'></textarea>
                     <input type='submit' class='btn btn-lg btn-primary btn-block'>
                     </form>";
         //        print "<p><a href='view_job.php?jobid=$id&apply=1'>One Click Apply</a></p>";
+            }
             }
         else
             {
