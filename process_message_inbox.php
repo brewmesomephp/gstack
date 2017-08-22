@@ -80,7 +80,7 @@ function getContent($sess_id, $display_contacts=1)
                 }
                 else
                 {
-                                        $id = $user['id'];
+                     $id = $user['id'];
 
                      $name = "<a href='php_profile.php?id=$id'>" . $user['first_name'] . " " . $user['last_name']. "</a>";
                 }

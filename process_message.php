@@ -197,22 +197,26 @@ if (isset($_POST['to']))
                 }
                 else
                 {
-                     $name = "<a href='php_profile.php?id=$id'>'" . $user['first_name'] . " " . $user['last_name']. "</a>";
+                    $id = $user['id'];
+
+                     $name = "<a href='php_profile.php?id=$id'>" . $user['first_name'] . " " . $user['last_name']. "</a>";
                 }
 //                replace the message with an alert to go to the applications.php page to view the job related message if it is an application message
-                if ($app){
-                    if (get_referrer() == "messages"){
-                        $job = getJobByAppId($app);
-                        $title= $job['title'];
-                        print "<a href='applications.php?viewapp=$app'>[Job Application Message] $title</a> <br />";
+                if ($contact['appid'] != 0){
+                        $app = $contact['appid'];
+                        if (get_referrer() == "messages"){
+                            $job = getJobByAppId($app);
+                            $title= $job['title'];
+                            print "<a href='applications.php?viewapp=$app'>[Job Application Message] $title</a> <br />";
+                        }
+                        else{
+                            print $name . ": " . $contact['message'] . "<br />";
+
+                        }
                     }
                     else{
-                        print $name . ": " . stripslashes($contact['message']) . "<br />"; 
+                        print $name . ": " . $contact['message'] . "<br />";
                     }
-                }
-                else{
-                    print $name . ": " . stripslashes($contact['message']) . "<br />"; 
-                }
                 
             }
             

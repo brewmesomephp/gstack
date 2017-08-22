@@ -205,7 +205,7 @@ include_once "functions.php";
        $sess_id = $_SESSION['id'];
        
        $app = $_GET['viewapp'];
-        $contact_id = $_GET['fromid'];
+//        $contact_id = $_GET['fromid'];
         $user = get_user($_SESSION['id']);
        //shape this code up asap... im brain dead right now and i know its sloppy. im surprised i can think
        if ($user['account'] == 0){

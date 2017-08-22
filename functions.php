@@ -560,8 +560,8 @@ function mail_setting($id)
     $query = "SELECT * FROM mail_settings WHERE userid='$id'";
     $sql = $dbs->prepare($query);
     $sql->execute();
-    $results = $sql->fetchAll();
-    $results = $results[0]['msg'];
+    $results = $sql->fetch();
+    $results = $results['msg'];
     
     return $results;
 }
