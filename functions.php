@@ -1021,11 +1021,22 @@ function getJobList($dbs, $limit=5, $print=true)
 
 
 
-function getJobByApp($app){
-    $query = "SELECT * FROM jobs WHERE id='$app'";
+function getJobByAppId($app){
+    $dbs = db_connection();
+    $query = "SELECT * FROM apply_now WHERE id='$app'";
     $sql = $dbs->prepare($query);
     $sql->execute();
-    $job = $sql->fetchAll();
+    $job = $sql->fetch();
+    
+//    print "the \$job is "; print_r($job); print "<br /><br /><br />";
+    $jobid = $job['jobid'];
+    
+    $query = "SELECT * FROM jobs WHERE id='$jobid'";
+    $sql = $dbs->prepare($query);
+    $sql->execute();
+    $job = $sql->fetch();
+    
+//    print "the \$job2 is "; print_r($job); print "<br /><br /><br />";
     return $job;
 }
 

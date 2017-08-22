@@ -74,17 +74,22 @@ function getContent($sess_id, $display_contacts=1)
                         //
                     }
                     if ($user['account'] == '1')
-                    {
-                         $name = $user['company'];
-                    }
-                    else
-                    {
-                        $name = $user['first_name'] . " " . $user['last_name'];
-                    }
+                {
+                    $id = $user['id'];
+                     $name = "<a href='php_company.php?id=$id'>" . $user['company'] . "</a>";
+                }
+                else
+                {
+                                        $id = $user['id'];
+
+                     $name = "<a href='php_profile.php?id=$id'>" . $user['first_name'] . " " . $user['last_name']. "</a>";
+                }
                     if ($contact['appid'] != 0){
                         $app = $contact['appid'];
                         if (get_referrer() == "messages"){
-                            print "<a href='applications.php?viewapp=$app'>[Job Application Message] appid=$app</a> <br />";
+                            $job = getJobByAppId($app);
+                            $title= $job['title'];
+                            print "<a href='applications.php?viewapp=$app'>[Job Application Message] $title</a> <br />";
                         }
                         else{
                             print $name . ": " . $contact['message'] . "<br />";
@@ -128,6 +133,8 @@ function getContent($sess_id, $display_contacts=1)
     
     
     if ($display_contacts == 1)    {
+        print "<hr>";
+    print "<h2>Contacts</h2>";
         
         $query = "SELECT * FROM messages WHERE toid='$sess_id' OR fromid='$sess_id' ORDER BY opened ASC, added DESC ";
         $sql = $dbs->prepare($query);

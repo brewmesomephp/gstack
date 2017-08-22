@@ -192,16 +192,19 @@ if (isset($_POST['to']))
                 }
                 if ($user['account'] == '1')
                 {
-                     $name = $user['company'];
+                    $id = $user['id'];
+                     $name = "<a href='php_company.php?id=$id'>" . $user['company'] . "</a>";
                 }
                 else
                 {
-                    $name = $user['first_name'] . " " . $user['last_name'];
+                     $name = "<a href='php_profile.php?id=$id'>'" . $user['first_name'] . " " . $user['last_name']. "</a>";
                 }
 //                replace the message with an alert to go to the applications.php page to view the job related message if it is an application message
                 if ($app){
                     if (get_referrer() == "messages"){
-                        $name.=": [Job Application Message] Please view this message <a href='applications.php?viewapp=$app'>here</a>";
+                        $job = getJobByAppId($app);
+                        $title= $job['title'];
+                        print "<a href='applications.php?viewapp=$app'>[Job Application Message] $title</a> <br />";
                     }
                     else{
                         print $name . ": " . stripslashes($contact['message']) . "<br />"; 
@@ -298,6 +301,8 @@ if (isset($_POST['to']))
     $dbs = db_connection();
     
 if ((!isset($_GET['display_contacts'])) || $_GET['display_contacts'] == 1){
+    print "<hr>";
+    print "<h2>Contacts</h2>";
 
     $contact = array_unique($contact);
     $contact = array_values($contact);
