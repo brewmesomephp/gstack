@@ -1068,4 +1068,33 @@ function get_referrer()
         }
     }
 
+function send_message_to_company_users($company_id, $custom_message){
+    
+    //select unique users that work for the company in which the message must go out to
+    $dbs = db_connection();
+    $query = "SELECT DISTINCT `userid` FROM `company_workers` WHERE `companyid`='$company_id'";
+    $sql = $dbs->prepare($query);
+    $sql->execute();
+    $users = $sql->fetchAll();
+    $custom_message = strip_tags($custom_message);
+    
+    foreach($users as $user){
+        $userid = $user['userid'];
+//        print "<h1>Test: $id</h1>";
+        $message = "INSERT INTO `messages` (`fromid`, `toid`, `message`, `added`) VALUES ('$company_id', '$userid', '$custom_message', 'CURRENT_TIMESTAMP')";
+        $sql = $dbs->prepare($message);
+        $sql->execute();
+    }
+            $message = "INSERT INTO `messages` (`fromid`, `toid`, `message`, `added`) VALUES ('$company_id', '$company_id', '$custom_message', 'CURRENT_TIMESTAMP')";
+            $sql = $dbs->prepare($message);
+            $sql->execute();
+
+    
+    
+    
+    
+}
+
+
+
 ?>    

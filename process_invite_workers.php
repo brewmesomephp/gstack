@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 if (!isset($_SESSION['id']))
     {
@@ -20,6 +20,8 @@ function getContent($sess_id)
         $job_title = addslashes(strip_tags($_POST['job_title']));
         //add title to the database and then send a list of games with the input boxes to edit data 
         $query = "UPDATE company_worker_invites SET job_title='$job_title' WHERE fromid='$sess_id' AND toid='$invited_user_id'";
+//      $query = "UPDATE company_worker_invites SET job_title='$job_title' WHERE fromid='$sess_id' AND toid='$invited_user_id'  AND job_title='' ORDER BY id DESC LIMIT 1";
+
         $sql = $dbs->prepare($query);
         $sql->execute();
         
@@ -29,7 +31,7 @@ function getContent($sess_id)
         $user = get_user($invited_user_id);
         $name = $user['name'];
 
-
+        //gets games by userid
         $games = get_games($sess_id);
         
         

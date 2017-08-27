@@ -117,7 +117,11 @@ include_once "functions.php";
                 $status = $row['status'];
                 $time_read = $row['time_read'];
                 $time_responded = $row['time_responded'];
+                $company_id = $row['companyid'];
                 
+                //gets company name
+                $company_data = get_user($company_id);
+                $company_name = $company_data['name'];
                 
                 
 //                row in db of job
@@ -131,10 +135,46 @@ include_once "functions.php";
                     //display the link to view the app 
                     print "<b><a href='php_profile.php?id=$fromid'>".$from['name']. "</a></b> applied for <b><a href='view_job.php?jobid=$jobid'>$title</a></b>";
                     if (isset($_GET['viewapp']) && $id == $_GET['viewapp']){
+                        
+                        
+                        //mark as read if not already
                         $viewapp = $_GET['viewapp'];
                         $query2 = "UPDATE `apply_now` SET `read`='1', `time_read`=CURRENT_TIMESTAMP WHERE `id`='$viewapp' AND `read`='0'";
                         $sql = $dbs->prepare($query2);
                         $sql->execute();
+                        
+                        
+                        //now check if it is accepted
+                        if (isset($_GET['a'])){
+                            $a = $_GET['a'];
+                            if ($user['id'] == $company_id){
+                                if ($a){
+                                    $app_id = $viewapp;
+                                    print "<br />Accepted.";
+                                    $query = "UPDATE apply_now SET status='1' WHERE  id='$app_id'";
+                                    //now message all team members
+                                    //add to 
+                                    
+                                    //                          company,     applicatoin id
+                                    
+                                    $applicant = $from['name'];
+                                    $applicant_id = $from['id'];
+                                    $userLink = "<a href='php_profile.php?id=$applicant_id'>$applicant</a>";
+                                    $this_job = getJobByAppId($app_id);
+                                    $title_of_this_job = $this_job['title'];
+                                    $company_message = "$userLink just joined the $company_name team! Send him a message to welcome $applicant";
+                                    print "<h1>$company_message</h1>";
+                                    send_message_to_company_users($company_id, $company_message);
+                                }
+                                else{
+                                    print "<br />Denied.";
+                                    $query = "UPDATE apply_now SET status='-1' WHERE id='$app_id'";
+                                }
+                                $sql = $dbs->prepare($query);
+                                $sql->execute();
+
+                            }
+                        }
                         
                         $message = $row['message'];
 //                        display message
@@ -142,7 +182,9 @@ include_once "functions.php";
                         print "<h2>" . $from['name'] . " &#8212; $title</h2>";
                         print "<br><b style='padding-left:20px;'>Cover Letter</b><br>";
                         print "<p style='padding-left:20px;'>$message</p>";
-                        print "<u><a href='applications.php?viewapp=$id&a=1&fromid=$fromid' id='$id'>Accept</a></u> / <u><a href='applications.php?viewapp=$id&a=0&fromid=$fromid'  id='$id'>Decline</a></u><br />  ";                   
+                        if ($user['account'] == 1){
+                            print "<u><a href='applications.php?viewapp=$id&a=1&fromid=$fromid' id='$id'>Accept</a></u> / <u><a href='applications.php?viewapp=$id&a=0&fromid=$fromid'  id='$id'>Decline</a></u><br />  ";                   
+                        }
                         
                         
                         ?>
@@ -166,8 +208,14 @@ include_once "functions.php";
                                         <?php
                     }
                     else{
-                        
-                        print "<br /><a href='applications.php?viewapp=$id&fromid=$fromid'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
+                        if ($user['account'] == 1){
+
+                            print "<br /><a href='applications.php?viewapp=$id&fromid=$fromid'>[View Application]</a> <a href='applications.php?viewapp=$id&a=1' id='$id'>Accept</a> / <a href='applications.php?viewapp=$id&a=0'  id='$id'>Decline</a><br />  ";
+                        }
+                        else{
+                            print " -> <a href='applications.php?viewapp=$id&fromid=$fromid'>[View Application]</a> <br />  ";
+
+                        }
                         
                     }
 

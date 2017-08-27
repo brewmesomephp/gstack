@@ -943,6 +943,8 @@ $(function() {
 	});
 });
      
+     
+//step 1: click Invite Employee
 $(function() {
 //twitter bootstrap script
 	$("#btn_worker").click(function(){
@@ -952,33 +954,9 @@ $(function() {
 			url: "process_invite_workers.php?id=<?=$_GET['id']?>",
 			data: $('form.send_msg').serialize(),
         		success: function(msg){
-                    
-                        
  	          		  $("#invite_text").html(msg);
                       $("#btn_emp").html("");
                     //clear form.
-                   
- 		        },
-			error: function(){
-				alert("failure");
-				}
-      			});
-	});
-});     
-     
-     $(function() {
-//twitter bootstrap script
-	$("#btn_interested").click(function(){
-        
-		   	$.ajax({
-    		   	type: "POST",
-			url: "process_show_interest.php?id=<?=$_GET['id']?>",
-			data: $('form.send_msg').serialize(),
-        		success: function(msg){
-                     
- 	          		  $("#interest_text").html(msg);
-                    //clear form.
-                   
  		        },
 			error: function(){
 				alert("failure");
@@ -986,7 +964,34 @@ $(function() {
       			});
 	});
 });
-
+     
+//Step 2: What is xyz's Job title?
+$(document).on("click",".submit_job_title",function(e){
+    var invited_user_id = this.id;
+    var job_title = $('#company_job_title'+invited_user_id).val();
+     //alert(invited_user_id);
+     $.ajax({
+    		   	type: "POST",
+			url: "process_invite_workers.php?set_title=true", 
+			data: {
+                'invited_user_id':invited_user_id,
+                'job_title':job_title
+            
+            }
+         ,
+        		success: function(msg){
+                    
+                        
+ 	          		  $("#invite_text").html(msg)
+ 		        },
+			error: function(){
+				alert("failure");
+				}
+      			});
+     
+ }); 
+     
+//Step 3: Which game is xyz working on? -> Change this to Which game is xyz working on as "job title";
      //add game
  $(document).on("click",".add_game",function(e){
  var game_id = this.id;
@@ -1015,31 +1020,8 @@ $(function() {
      
      
   
-$(document).on("click",".submit_job_title",function(e){
-    var invited_user_id = this.id;
-    var job_title = $('#company_job_title'+invited_user_id).val();
-     //alert(invited_user_id);
-     $.ajax({
-    		   	type: "POST",
-			url: "process_invite_workers.php?set_title=true", 
-			data: {
-                'invited_user_id':invited_user_id,
-                'job_title':job_title
-            
-            }
-         ,
-        		success: function(msg){
-                    
-                        
- 	          		  $("#invite_text").html(msg)
- 		        },
-			error: function(){
-				alert("failure");
-				}
-      			});
-     
- }); 
-     
+
+//Then click done     
      $(document).on("click",".done",function(e){
     
      //alert(invited_user_id);
@@ -1048,7 +1030,28 @@ $(document).on("click",".submit_job_title",function(e){
      
  });
 
-
+     
+     //sends them a message that you are interested in them
+     $(function() {
+//twitter bootstrap script
+	$("#btn_interested").click(function(){
+        
+		   	$.ajax({
+    		   	type: "POST",
+			url: "process_show_interest.php?id=<?=$_GET['id']?>",
+			data: $('form.send_msg').serialize(),
+        		success: function(msg){
+                     
+ 	          		  $("#interest_text").html(msg);
+                    //clear form.
+                   
+ 		        },
+			error: function(){
+				alert("failure");
+				}
+      			});
+	});
+});
      
      
      
