@@ -41,6 +41,9 @@ if (isset($_GET['remove']))
     print "Successfully removed Job Position";
 }
 
+if (isset($_GET['gameid'])){
+}
+
 if (isset($_POST['edit']))
 {
     $edit = $_POST['edit'];

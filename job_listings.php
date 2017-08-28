@@ -117,7 +117,7 @@ include_once "functions.php";
                         print "<ul> ";
                         for ($i = 0; $i < sizeof($game_links); $i++)
                              {
-                                print "<li id='game{$game_links[$i][0]}'>".$game_links[$i][1]." <a href='#' class='remove_game' id='{$game_links[$i][0]}'><b>(REMOVE)</b></a></li>";
+                                print "<li id='game{$game_links[$i][0]}'>".$game_links[$i][1]." <a href='#' class='remove_game' id='$id'><b>(REMOVE)</b></a></li>";
                                 
                              }
                         print "</ul>";

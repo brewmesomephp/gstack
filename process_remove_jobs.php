@@ -47,27 +47,10 @@ $sess_id = $_SESSION['id'];
             $companyid = get_company_by_game($game_id);
             
             //this will find your record of having this job
-            $query = "SELECT * FROM company_workers WHERE userid='$sess_id' AND companyid='$companyid'";
+            $query = "DELETE FROM company_workers WHERE id='$game_id'";
             $sql = $dbs->prepare($query);
             $sql->execute();
-            $jobs = $sql->fetchAll();
-            foreach($jobs as $job)
-            {
-                $jobid = $job['id'];
-                $games = $job['games'];
-                print "GAMES 1: $games\n";
-
-            }
             
-            $str_to_find = ",$game_id";
-            print "str_to_find: $str_to_find\n";
-            
-            $games = str_replace($str_to_find, "", $games);
-            print "GAMES 2: $games\n";
-            //update record
-            $query = "UPDATE company_workers SET games='$games' WHERE id='$jobid'";
-            $sql = $dbs->prepare($query);
-            $sql->execute();
             
         }
     }
