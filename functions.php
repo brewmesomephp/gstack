@@ -1095,6 +1095,16 @@ function send_message_to_company_users($company_id, $custom_message){
     
 }
 
-
+//SQL
+//Display without a duplication of a single column
+//FROM company_worker_invites  a
+//INNER JOIN 
+//  (SELECT games,
+//    MAX(id) as id
+//  FROM company_worker_invites   WHERE toid='$sess_id'
+//  GROUP BY games
+//) AS b
+//  ON a.games = b.games 
+//  AND a.id = b.id";
 
 ?>    

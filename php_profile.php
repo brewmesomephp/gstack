@@ -196,7 +196,16 @@ $icon = $u['icon'];
                             <!-- start:current companies -->
 					        
 <?php
-        $query = "SELECT * FROM company_workers WHERE userid='$userid'";
+//        $query = "SELECT * FROM company_workers WHERE userid='$userid'";
+$query = "SELECT * FROM company_workers  a
+INNER JOIN 
+  (SELECT companyid,
+    MAX(id) as id
+  FROM company_workers  WHERE userid='$userid'
+  GROUP BY companyid
+) AS b
+  ON a.companyid = b.companyid 
+  AND a.id = b.id";
         $sql = $dbs->prepare($query);
         $sql->execute();
         $companies = $sql->fetchAll();
