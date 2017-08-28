@@ -39,32 +39,14 @@ $sess_id = $_SESSION['id'];
         //print "GOT HERE";
         if ($_GET['id'] != -1)
         {
-            $split = explode("-", $_GET['id']);
-            $game = $split[0];
-            $user = $split[1];
-            
+            $id = $_GET['id'];
             include_once "functions.php";
-            $companyid = get_company_by_game($game);
             
             //this will find your record of having this job
-            $query = "SELECT * FROM company_workers WHERE userid='$user' AND companyid='$sess_id'";
+            $query = "DELETE FROM company_workers WHERE id='$id';";
             $sql = $dbs->prepare($query);
             $sql->execute();
-            $jobs = $sql->fetchAll();
-            foreach($jobs as $job)
-            {
-                $jobid = $job['id'];
-                $games = $job['games'];
-
-            }
             
-            $str_to_find = ",$game";
-            
-            $games = str_replace($str_to_find, "", $games);
-            //update record
-            $query = "UPDATE company_workers SET games='$games' WHERE id='$jobid'";
-            $sql = $dbs->prepare($query);
-            $sql->execute();
             print "REMOVED";
         }
     }
