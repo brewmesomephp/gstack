@@ -69,20 +69,7 @@ if (isset($_POST['edit']))
                 $title = $row['title'];
                 $company = get_user($companyid);
                 
-                
-                
-                
-                
-                
-                
-            
-                
-                
-                
-                
-                
-                
-                
+
                 
                 
                 print "<div class='row'><div class='col-md-2' id='company_link'><a href='php_company.php?id=$companyid'>".$company['company'] . 
@@ -90,13 +77,7 @@ if (isset($_POST['edit']))
                 
                 
             }
-    
-    
-    
-    
-    
-    
-    
+
     
     
     
@@ -119,11 +100,27 @@ if (isset($_GET['accept']))
             $games = $row['games'];
         }
         
-        
+        //check if there already exists this person working for this game. and if so, replace the title
+        $check_game = "SELECT * FROM company_workers WHERE userid='$sess_id' AND companyid='$fromid' AND games='$games'";
+        $sql = $dbs->prepare($check_game);
+        $sql->execute();
+        $existing_position = $sql->fetchAll();
+        if (sizeof($existing_position)){
+            $update_job_title = "UPDATE company_workers SET title='$title' WHERE userid='$sess_id' AND companyid='$fromid' AND games='$games'";
+            print "<h1>$update_job_title</h1>";
+            $sql = $dbs->prepare($update_job_title);
+            $sql->execute();
+            print "This person already works for this game...";
+        }
+        else{
+            print "This person does not already work for this game apparently";
         //make a permanent worker
         $q2 = "INSERT INTO company_workers (userid, companyid, title, games) VALUES ('$sess_id', '$fromid', '$title', '$games')";
         $sql = $dbs->prepare($q2);
         $sql->execute();
+        
+        }
+        
 
         //get the id from here so that we can send it back in the Job Title Form
         $q4 = "SELECT * FROM company_workers WHERE userid='$sess_id' AND companyid = '$fromid'";

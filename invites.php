@@ -94,6 +94,19 @@ include_once "functions.php";
             print "<h3>Invites</h3>";
 print "<ul>";
             $query = "SELECT * FROM company_worker_invites WHERE toid='$sess_id' ORDER BY viewed ASC";
+//            $query = "SELECT a.*
+//FROM company_worker_invites  a
+//INNER JOIN 
+//  (SELECT games,
+//    MAX(id) as id
+//  FROM company_worker_invites   WHERE toid='$sess_id'
+//  GROUP BY games
+//) AS b
+//  ON a.games = b.games 
+//  AND a.id = b.id";
+
+
+
             $sql = $dbs->prepare($query);
             $sql->execute();
             $rows = $sql->fetchAll();

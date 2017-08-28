@@ -947,7 +947,7 @@ $(function() {
 //step 1: click Invite Employee
 $(function() {
 //twitter bootstrap script
-	$("#btn_worker").click(function(){
+    $(document).on("click","#btn_worker",function(e){
         
 		   	$.ajax({
     		   	type: "POST",
