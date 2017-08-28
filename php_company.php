@@ -243,7 +243,16 @@ print "</ul></div>";
                             <!-- start:current contributors -->
 					        
 <?php
-        $query = "SELECT * FROM company_workers WHERE companyid='$userid'";
+//        $query = "SELECT * FROM company_workers WHERE companyid='$userid'";
+$query = "SELECT * FROM company_workers  a
+INNER JOIN 
+  (SELECT userid,
+    MAX(id) as id
+  FROM company_workers  WHERE companyid='$userid'
+  GROUP BY userid
+) AS b
+  ON a.userid = b.userid 
+  AND a.id = b.id";
         $sql = $dbs->prepare($query);
         $sql->execute();
         $workers = $sql->fetchAll();
