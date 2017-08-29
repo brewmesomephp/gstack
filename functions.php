@@ -1095,6 +1095,13 @@ function send_message_to_company_users($company_id, $custom_message){
     
 }
 
+
+function array_to_object($array)
+/*Turns database arrays into objects*/{
+    $object = json_decode(json_encode((object) $array), FALSE);   
+    return $object;
+}
+
 //SQL
 //Display without a duplication of a single column
 //FROM company_worker_invites  a

@@ -164,7 +164,20 @@ include_once "functions.php";
                                     $title_of_this_job = $this_job['title'];
                                     $company_message = "$userLink just joined the $company_name team! Send him a message to welcome $applicant";
                                     print "<h1>$company_message</h1>";
-                                    send_message_to_company_users($company_id, $company_message);
+                                    
+                                    //i think we're going to move this to when someone is accepted and accepts an invitation, etc
+//                                    send_message_to_company_users($company_id, $company_message);
+                                    
+                                    //now give them the choice to make it public?
+                                    print "<h2>Which game is this job for?</h2>";
+                                    $possible_games = get_games($company_id);
+                                    foreach($possible_games as $game){
+                                        $game = array_to_object($game);
+                                        $id = $game->id;
+                                        print "<a href='#' id='$game->id'>$game->title</a> | ";
+                                    }
+                                    print "<a href='#' id='-1'>N/A</a>";
+
                                 }
                                 else{
                                     print "<br />Denied.";
@@ -294,36 +307,29 @@ include_once "functions.php";
 $(function() {
 //twitter bootstrap script
 	$(document).on("click",".btn_msg",function(e){
-
-        
     var to_id = this.id;
     var msg = $('#message').val();
     var to = $('#sendto').val();
-
      $.ajax({
     		   	type: "POST",
 			url: "process_message.php?display_contacts=0&display_header=0&app=<?=$app?>", 
 			data: {
             'to':<?=$contact_id?>,
             'msg':msg
-            
             },
         		success: function(msg){
-                    
  	          		  $("#game_updates").html(msg);
                       $(".send_msg").html("");
                     //clear form.
-                   
  		        },
 			error: function(){
 				alert("failure");
 				}
-      			});
+      		});
 	});
 });
-
-            
-    $(document).ready(function() {
+                                
+$(document).ready(function() {
     $('#game_updates').load('process_message_inbox.php?id=<?=$contact_id?>&display_contacts=0&display_header=0&app=<?=$app?>');
     return false;
 });
