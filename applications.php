@@ -170,13 +170,14 @@ include_once "functions.php";
                                     
                                     //now give them the choice to make it public?
                                     print "<h2>Which game is this job for?</h2>";
+                                    print "<p class='gamelist'>";
                                     $possible_games = get_games($company_id);
                                     foreach($possible_games as $game){
                                         $game = array_to_object($game);
                                         $id = $game->id;
-                                        print "<a href='#' id='$game->id'>$game->title</a> | ";
+                                        print "<a href='#' id='$game->id' class='add_game'>$game->title</a> | ";
                                     }
-                                    print "<a href='#' id='-1'>N/A</a>";
+                                    print "<a href='#' id='-1'>N/A</a> </p>";
 
                                 }
                                 else{
@@ -303,6 +304,36 @@ include_once "functions.php";
         ?>
                     
                             <script>
+
+            
+            //twitter bootstrap script
+                $(document).on("click",".add_game",function(e){
+                e.preventDefault();
+                var game_id = this.id;
+                var userid = <?=$applicant_id?>;
+                var companyid = <?=$sess_id?>;
+                
+                alert ("game_id: " + game_id + ", userid: " + userid + ", companyid: " + companyid);
+                
+                 $.ajax({
+                            type: "POST",
+                        url: "process_add_worker.php?add_game=1", 
+                        data: {
+                        'game_id':game_id,
+                        'userid':userid,
+                        'companyid':companyid
+                        },
+                            success: function(msg){
+                                  $(".gamelist").html(msg);
+                            },
+                        error: function(){
+                            alert("failure. please report as bug.");
+                            }
+                        });
+                });
+            
+                                
+                                
 
 $(function() {
 //twitter bootstrap script

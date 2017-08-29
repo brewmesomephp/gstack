@@ -208,8 +208,6 @@ $(document).on("click",".remove_game",function(e){
 				alert("failure");
 				}
       			});
-     
-     
  }); 
 
             
