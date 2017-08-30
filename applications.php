@@ -163,6 +163,7 @@ include_once "functions.php";
                                     $this_job = getJobByAppId($app_id);
                                     $title_of_this_job = $this_job['title'];
                                     $company_message = "$userLink just joined the $company_name team! Send him a message to welcome $applicant";
+                                    $jobtitle = $title;
                                     print "<h1>$company_message</h1>";
                                     
                                     //i think we're going to move this to when someone is accepted and accepts an invitation, etc
@@ -312,8 +313,10 @@ include_once "functions.php";
                 var game_id = this.id;
                 var userid = <?=$applicant_id?>;
                 var companyid = <?=$sess_id?>;
+                var jobtitle = "<?=$jobtitle?>";
+                //must add current job title as well, ffs. or grab it from the application
                 
-                alert ("game_id: " + game_id + ", userid: " + userid + ", companyid: " + companyid);
+                alert ("game_id: " + game_id + ", userid: " + userid + ", companyid: " + companyid + ", jobtitle: " + jobtitle);
                 
                  $.ajax({
                             type: "POST",
@@ -321,7 +324,8 @@ include_once "functions.php";
                         data: {
                         'game_id':game_id,
                         'userid':userid,
-                        'companyid':companyid
+                        'companyid':companyid,
+                        'jobtitle':jobtitle
                         },
                             success: function(msg){
                                   $(".gamelist").html(msg);
