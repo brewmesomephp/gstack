@@ -118,6 +118,8 @@ print "<ul>";
                 $title = $row['job_title'];
                 $game_ids = $row['games'];
                 $game_ids = explode(",",$game_ids);
+                
+                debug("game_ids: " . print_r($game_ids, true));
                 $game_links = get_games_links_by_array($game_ids);
                 
                 

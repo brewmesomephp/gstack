@@ -1114,4 +1114,8 @@ function array_to_object($array)
 //  ON a.games = b.games 
 //  AND a.id = b.id";
 
+
+function debug($message){
+    print "<p style='color:red'>Debug Message: $message</p>";
+}
 ?>    

@@ -178,7 +178,7 @@ include_once "functions.php";
                                         $id = $game->id;
                                         print "<a href='#' id='$game->id' class='add_game'>$game->title</a> | ";
                                     }
-                                    print "<a href='#' id='-1'>N/A</a> </p>";
+                                    print "<a href='#' class='add_game' id='-1'>N/A</a> </p>";
 
                                 }
                                 else{

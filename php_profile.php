@@ -314,6 +314,9 @@ INNER JOIN
             
                 foreach($gamelist as $game)
                 {
+                    if ($game[0] == -1){
+                        continue;
+                    }
                     $game_id = $game[0];
                     $link = $game[1];
                     $title = $game[2];
